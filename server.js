@@ -27,7 +27,7 @@ const PORT = process.env.PORT;
 // Database
 // ========================
 
-const PROJECT3_DB = process.env.MONGODB_URI;
+const PROJECT3_DB = process.env.PROJECT3_DB;
 
 mongoose.connect(PROJECT3_DB, {
 	useNewUrlParser: true,
