@@ -13,11 +13,21 @@
 	</head>
 	<body ng-controller="MyController as ctrl">
 		<h1>HoliShopper</h1>
+		<h2>Budget: {{ctrl.budget|currency}}</h2>
+		<h2>Paid: {{ctrl.paid|currency}}</h2>
+		<select ng-model="order">
+			<option value="" selected="selected">Sort By</option>
+			<option value="price">price</option>
+			<option value="recipient">recipient</option>
+			<option value="category">category</option>
+		</select>
+
+
 		<div class="row">
 
 			<div class="wishlist">
-
-				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true">
+				<h2>Wishlist</h2>
+				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true | orderBy: order">
 					<div class="row">
 						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
 						<p>{{item.price|currency}}</p>
@@ -29,12 +39,11 @@
 						<button ng-click="ctrl.deleteItem(item)">DELETE</button>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="bought">
-
-				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':true}:true">
+				<h2>Bought</h2>
+				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':true}:true | orderBy: order">
 					<div class="row">
 						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
 						<p>{{item.price|currency}}</p>
@@ -46,7 +55,6 @@
 						<button ng-click="ctrl.deleteItem(item)">DELETE</button>
 					</div>
 				</div>
-
 			</div>
 	</div>
 
@@ -64,7 +72,6 @@
 		Low <input ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
 		<textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br>
 		<input type="submit" value="Create New Item">
-
 	</form>
 
 

@@ -62,6 +62,20 @@ this.getWishlist = function(){
     url: "/wishlist"
   }).then((response) => {
     this.wishlist = response.data;
+    console.log(this.wishlist);
+    this.budgetArray = [0];
+    this.paidArray = [0];
+    for (var i = 0; i < this.wishlist.length; i++) {
+      if (this.wishlist[i].complete) {
+        this.paidArray.push(this.wishlist[i].price);
+      } else {
+        this.budgetArray.push(this.wishlist[i].price);
+      }
+    }
+
+    this.paid = this.paidArray.reduce((a, b) => a + b);
+    this.budget = this.budgetArray.reduce((a, b) => a + b);
+
   })
 }
 
