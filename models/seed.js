@@ -9,7 +9,7 @@ module.exports = [
     storeUrl: "https://www.crateandbarrel.com/alura-cream-tall-vase/s454807?localedetail=US&a=1552&campaignid=622767084&adgroupid=28469965136&targetid=pla-829014536299&pla_sku=454807&pcat=HSW&ag=adult&scid=scplp454807&sc_intid=454807&gclid=Cj0KCQiA5dPuBRCrARIsAJL7oehjYuuITe9yadloT3Kba1o7MeqalTQkbwDxEc9rh11dwr1wolenKW4aAhouEALw_wcB",
     priority: "high",
     notes: "Need to buy it soon",
-    complete: false
+
   },
   {
     name: "North face down jacket",
@@ -33,6 +33,6 @@ module.exports = [
     storeUrl: "https://www.surlatable.com/le-creuset-525qt-deep-round-oven/4482808.html?mrkgcl=890&mrkgadid=3359655946&affsrcid=AFF0005&utm_source=Google&utm_medium=cpc&utm_campaign=206388101&utm_term=827628753835_brand_le_creuset_custom_label_2_cookware&product_id=4482808&creative=45091876901&device=c&matchtype=&network=g&gclid=Cj0KCQiA5dPuBRCrARIsAJL7oeiZswMFmJZoeYSMzZJGGPKJ4FZk4MYjo0ETjw4UZkJhEjPxDz80uWsaAqn2EALw_wcB",
     priority: "Low",
     notes: "This pot is heavy",
-    complete: false
+    complete: true
   }
 ]

@@ -13,20 +13,44 @@
 	</head>
 	<body ng-controller="MyController as ctrl">
 		<h1>HoliShopper</h1>
-		<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true">
-			<div class="row">
-				<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
-				<p>{{item.price|currency}}</p>
+
+		<div class="row">
+
+			<div class="wishlist">
+
+				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true">
+					<div class="row">
+						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
+						<p>{{item.price|currency}}</p>
+					</div>
+
+					<img src="{{item.image}}" alt="{{item.name}} image">
+					<div class="row-button">
+						<button ng-click="ctrl.toggleComplete(item)"> &#9989 </button>
+						<button ng-click="ctrl.deleteItem(item)"> &#10060 </button>
+					</div>
+				</div>
+
 			</div>
 
-			<img src="{{item.image}}" alt="{{item.name}} image">
-			<div class="row-button">
-				<button ng-click="ctrl.toggleComplete(item)">&#9989</button>
-				<button ng-click="ctrl.deleteItem(item)">&#10060</button>
+			<div class="bought">
+
+				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':true}:true">
+					<div class="row">
+						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
+						<p>{{item.price|currency}}</p>
+					</div>
+
+					<img src="{{item.image}}" alt="{{item.name}} image">
+					<div class="row-button">
+						<button ng-click="ctrl.toggleComplete(item)"> &#10094&#10094 </button>
+						<button ng-click="ctrl.deleteItem(item)"> &#10060 </button>
+					</div>
+				</div>
+
 			</div>
+	</div>
 
-
-		</div>
 
 
 
