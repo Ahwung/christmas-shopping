@@ -1,7 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const Wishlist = require('../models/wishlist.js')
+const wishlistSeed = require('../models/seed.js');
 
+
+///////////////////
+// seed
+///////////////////
+router.get("/seed", (req, res) => {
+  Wishlist.create(wishlistSeed, (err, seedData) => {
+    // res.json(seedData);
+    console.log(seedData);
+  })
+})
+
+
+///////////////////
+// index
+///////////////////
 router.get('/', (req, res) => {
     Wishlist.find({}, (err, foundWishlist) => {
         res.json(foundWishlist);
