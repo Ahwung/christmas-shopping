@@ -2,6 +2,27 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
+this.displayCreateInfo = false
+this.displayShowInfo = false
+this.item = ''
+
+
+this.displayCreateModal = () => {
+    this.displayCreateInfo = !this.displayCreateInfo
+}
+
+this.openShowModal = (item) => {
+    this.displayShowInfo = !this.displayShowInfo
+    this.displayShowModal(item);
+
+}
+
+
+this.displayShowModal = (item) => {
+    this.item = item;
+    console.log(this.item.name);
+
+}
 
 this.changeInclude = (path) => {
         this.includePath = 'partials/' + path + '.html'

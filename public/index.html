@@ -30,16 +30,21 @@
 			<div class="wishlist">
 				<h2>Wishlist</h2>
 				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true | orderBy: order">
+
 					<div class="row">
 						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
 						<p>{{item.price|currency}}</p>
 					</div>
 
-					<img src="{{item.image}}" alt="{{item.name}} image">
+					<img src="{{item.image}}" alt="{{item.name}} image" ng-click="ctrl.openShowModal(item)">
 					<div class="row-button">
 						<button ng-click="ctrl.toggleComplete(item)">BUY</button>
 						<button ng-click="ctrl.deleteItem(item)">DELETE</button>
+						<section class="modal edit" ng-include="'partials/show.html'" ng-if="ctrl.displayShowInfo" >
+
+						</section>
 					</div>
+
 				</div>
 			</div>
 
@@ -60,9 +65,11 @@
 			</div>
 	</div>
 
-	<section ng-include="'partials/create.html'">
+	<section class="modal edit" ng-include="'partials/create.html'" ng-if="ctrl.displayCreateInfo">
 
 	</section>
+
+
 
 
 	<footer ng-include="'partials/footer.html'">
