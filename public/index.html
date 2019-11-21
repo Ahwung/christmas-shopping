@@ -27,9 +27,11 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Category</th>
-					<th ng-repeat="category in ctrl.uniqueRecipientCategory">{{category}}</th>
-					<th>Total</th>
+						<th ng-click="ctrl.allCategory()"><button>Clear Filter</button></th>
+
+						<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button>{{category}}</button></th>
+
+						<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,7 +41,7 @@
 					<td>{{ctrl.budget|currency}}</td>
 				</tr>
 				<tr>
-					<td>Spent</td>
+					<td>Paid</td>
 					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
 					<td>{{ctrl.paid|currency}}</td>
 				</tr>

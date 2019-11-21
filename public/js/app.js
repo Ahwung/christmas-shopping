@@ -23,21 +23,34 @@ this.displayShowModal = (item) => {
 
 }
 
-  // Calculate Budget and Paid for each recipient category
-  this.sumMoney = function(category, complete){
+///////////////////
+// functions
+///////////////////
 
-    this.filteredWishlist = this.wishlist.filter((item) => {
-      return item.recipientCategory.toLowerCase()===category;
-    })
+// filter out the category on click
+this.filterCategory = function(category){
+this.searchBox = category;
+}
 
-    this.total = 0;
-    for (var i = 0; i < this.filteredWishlist.length; i++) {
-      if (this.filteredWishlist[i].complete === complete) {
-        this.total += this.filteredWishlist[i].price
-      }
-    }
-    return Math.round(this.total);
-  }
+this.allCategory = function(){
+this.searchBox = undefined;
+}
+
+// Calculate Budget and Paid for each recipient category
+this.sumMoney = function(category, complete){
+
+this.filteredWishlist = this.wishlist.filter((item) => {
+return item.recipientCategory.toLowerCase()===category;
+})
+
+this.total = 0;
+for (var i = 0; i < this.filteredWishlist.length; i++) {
+if (this.filteredWishlist[i].complete === complete) {
+this.total += this.filteredWishlist[i].price
+}
+}
+return Math.round(this.total);
+}
 
 
 this.changeInclude = (path) => {
@@ -97,6 +110,29 @@ this.deleteItem = function(item){
   })
 }
 
+this.editItem = function(item){
+  $http({
+    method: "PUT",
+    url: "/wishlist/"+item._id,
+    data: {
+      name: this.name,
+        recipient: this.recipient,
+        recipientCategory: this.recipientCategory,
+        price: this.price,
+        image: this.image,
+        storeName: this.storeName,
+        storeUrl: this.storeUrl,
+        priority: this.priority,
+        notes: this.notes,
+        complete: this.complete
+    }
+  }).then((response) => {
+    console.log(response);
+    this.getWishlist();
+  },(error) => {
+    console.log(error);
+  })
+}
 
 this.getWishlist = function(){
   $http({
