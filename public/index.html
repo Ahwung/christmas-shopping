@@ -23,8 +23,7 @@
 		</div>
 
 
-		<h1>HoliShopper</h1>
-		<h2>Budget Overview</h2>
+		<h2>Where Your Money Is Going?</h2>
 		<table>
 			<thead>
 				<tr>
@@ -40,7 +39,7 @@
 					<td>{{ctrl.budget|currency}}</td>
 				</tr>
 				<tr>
-					<td>Paid</td>
+					<td>Spent</td>
 					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
 					<td>{{ctrl.paid|currency}}</td>
 				</tr>
@@ -49,19 +48,28 @@
 
 
 		<div class="main">
-			<h2>Budget: {{ctrl.budget|currency}}</h2>
-			<h2>Paid: {{ctrl.paid|currency}}</h2>
-			<select ng-model="order">
-				<option value="" selected="selected">Sort By</option>
-				<option value="price">price</option>
-				<option value="recipient">recipient</option>
-				<option value="recipientCategory">category</option>
-			</select>
+
+
+
+
 
 
 			<div class="row">
-				<div class="">
+				<div class="sidebar col s3">
+					<h2>Budget: {{ctrl.budget|currency}}</h2>
+					<h2>Spent: {{ctrl.paid|currency}}</h2>
+				</div>
+
+
+				<div class="title col s8 offset-s4">
 					<h2>Wishlist</h2>
+
+						<select ng-model="order" class="browser-default ">
+							<option value="" selected="selected">Sort By</option>
+							<option value="price">Price</option>
+							<option value="recipient">Recipient</option>
+							<option value="recipientCategory">Category</option>
+						</select>
 				</div>
 
 				<div class="wishlist col s8 offset-s4">
@@ -99,7 +107,10 @@
 				</div>
 
 				<div class="row">
-					<h2>Bought</h2>
+					<div class="title col s8 offset-s4">
+						<h2>Purchased</h2>
+					</div>
+
 					<div class="bought col s8 offset-s4">
 
 						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist| filter:{'complete':true}:true | orderBy: order">
@@ -162,8 +173,8 @@
 								</p>
 
 						<textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br><br>
-						<input type="submit" class="waves-effect waves-light btn" value="Create New Item">
-						<button class="waves-effect waves-light btn" ng-click="ctrl.displayCreateModal()">Close</button>
+						<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Create New Item">
+						<button class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayCreateModal()">Close</button>
 					</form>
 				</section>
 
