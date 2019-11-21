@@ -17,7 +17,55 @@
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
+<<<<<<< HEAD
 		<div class="navbar-fixed" ng-include="'partials/nav.html'">
+=======
+		<h1>HoliShopper</h1>
+		<h2>Budget Overview</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th ng-repeat="category in ctrl.uniqueRecipientCategory">{{category}}</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Budget</td>
+					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
+					<td>{{ctrl.budget|currency}}</td>
+				</tr>
+				<tr>
+					<td>Paid</td>
+					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
+					<td>{{ctrl.paid|currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav ng-include="'partials/nav.html'">
+
+		</nav>
+		<h2>Budget: {{ctrl.budget|currency}}</h2>
+		<h2>Paid: {{ctrl.paid|currency}}</h2>
+		<select ng-model="order">
+			<option value="" selected="selected">Sort By</option>
+			<option value="price">price</option>
+			<option value="recipient">recipient</option>
+			<option value="recipientCategory">category</option>
+		</select>
+
+
+		<div class="row">
+
+			<div class="wishlist">
+				<h2>Wishlist</h2>
+				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true | orderBy: order">
+					<div class="row">
+						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
+						<p>{{item.price|currency}}</p>
+					</div>
+>>>>>>> 313b82d3c9d8d0ce0de722426d604fa983b002a8
 
 		</div>
 
