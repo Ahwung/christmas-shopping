@@ -12,7 +12,9 @@
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
-		<h1>HoliShopper</h1>
+		<nav ng-include="'partials/nav.html'">
+
+		</nav>
 		<h2>Budget: {{ctrl.budget|currency}}</h2>
 		<h2>Paid: {{ctrl.paid|currency}}</h2>
 		<select ng-model="order">
@@ -58,23 +60,15 @@
 			</div>
 	</div>
 
-	<form ng-submit="ctrl.createItem()">
-		Name <input ng-model="ctrl.name" type="text"><br>
-		Recipient <input ng-model="ctrl.recipient" type="text"><br>
-		Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
-		Price <input ng-model="ctrl.price" type="text"><br>
-		Image <input ng-model="ctrl.image" type="text"><br>
-		Store <input ng-model="ctrl.storeName" type="text"><br>
-		Store link <input ng-model="ctrl.storeUrl" type="text"><br>
-		priority
-		High <input ng-model="ctrl.priority" type="radio" name="priority" value="High">
-		Medium <input ng-model="ctrl.priority" type="radio" name="priority" value="Medium">
-		Low <input ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
-		<textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br>
-		<input type="submit" value="Create New Item">
-	</form>
+	<section ng-include="'partials/create.html'">
+
+	</section>
 
 
+	<footer ng-include="'partials/footer.html'">
+
+
+	</footer>
 
 
 
