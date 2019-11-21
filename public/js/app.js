@@ -19,6 +19,11 @@ app.controller("MyController", ["$http", function($http){
   }
 
 
+this.changeInclude = (path) => {
+        this.includePath = 'partials/' + path + '.html'
+    }
+
+
 this.toggleComplete = function(item){
   console.log(!item.complete);
   $http({
