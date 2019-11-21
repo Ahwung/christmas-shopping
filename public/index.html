@@ -17,9 +17,12 @@
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
-<<<<<<< HEAD
+
 		<div class="navbar-fixed" ng-include="'partials/nav.html'">
-=======
+
+		</div>
+
+
 		<h1>HoliShopper</h1>
 		<h2>Budget Overview</h2>
 		<table>
@@ -43,31 +46,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<nav ng-include="'partials/nav.html'">
 
-		</nav>
-		<h2>Budget: {{ctrl.budget|currency}}</h2>
-		<h2>Paid: {{ctrl.paid|currency}}</h2>
-		<select ng-model="order">
-			<option value="" selected="selected">Sort By</option>
-			<option value="price">price</option>
-			<option value="recipient">recipient</option>
-			<option value="recipientCategory">category</option>
-		</select>
-
-
-		<div class="row">
-
-			<div class="wishlist">
-				<h2>Wishlist</h2>
-				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true | orderBy: order">
-					<div class="row">
-						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
-						<p>{{item.price|currency}}</p>
-					</div>
->>>>>>> 313b82d3c9d8d0ce0de722426d604fa983b002a8
-
-		</div>
 
 		<div class="main">
 			<h2>Budget: {{ctrl.budget|currency}}</h2>
@@ -99,6 +78,7 @@
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
+								<button ng-click="ctrl.deleteItem(item)">UPDATE</button>
 							  </div>
 							  <div class="card-reveal">
 								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -134,6 +114,7 @@
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
+							  <button ng-click="ctrl.deleteItem(item)">UPDATE</button>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -149,27 +130,48 @@
 			</div>
 				</div>
 
+				<section class="modal edit" ng-if="ctrl.displayCreateInfo">
 
-		<section class="modal edit" ng-if="ctrl.displayCreateInfo">
-			<form ng-submit="ctrl.createItem()">
-			    Name <input ng-model="ctrl.name" type="text"><br>
-			    Recipient <input ng-model="ctrl.recipient" type="text"><br>
-			    Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
-			    Price <input ng-model="ctrl.price" type="text"><br>
-			    Image <input ng-model="ctrl.image" type="text"><br>
-			    Store <input ng-model="ctrl.storeName" type="text"><br>
-			    Store link <input ng-model="ctrl.storeUrl" type="text"><br>
-			    priority
-			    High <input ng-model="ctrl.priority" type="radio" name="priority" value="High">
-			    Medium <input ng-model="ctrl.priority" type="radio" name="priority" value="Medium">
-			    Low <input ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
-			    <textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br>
-			    <input type="submit" value="Create New Item">
-			    <button ng-click="ctrl.displayCreateModal()">Close</button>
-			</form>
-		</section>
+					<form  ng-submit="ctrl.createItem()">
+						<h4>Create A Wishlist Item!</h4>
+						Name <input ng-model="ctrl.name" type="text"><br>
+						Recipient <input ng-model="ctrl.recipient" type="text"><br>
+						Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
+						Price <input ng-model="ctrl.price" type="text"><br>
+						Image <input ng-model="ctrl.image" type="text"><br>
+						Store <input ng-model="ctrl.storeName" type="text"><br>
+						Store link <input ng-model="ctrl.storeUrl" type="text"><br>
 
-		</div>
+								<p>
+									<label for="High">
+										<input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+										<span>High</span>
+									</label>
+								</p>
+								<p>
+									<label for="Medium">
+										<input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+										<span>Medium</span>
+									</label>
+								</p>
+								<p>
+									<label for="Low">
+										<input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
+										<span>Low</span>
+									</label>
+								</p>
+
+						<textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br><br>
+						<input type="submit" class="waves-effect waves-light btn" value="Create New Item">
+						<button class="waves-effect waves-light btn" ng-click="ctrl.displayCreateModal()">Close</button>
+					</form>
+				</section>
+
+
+
+
+
+
 
 
 
