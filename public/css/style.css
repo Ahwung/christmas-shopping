@@ -23,3 +23,8 @@ button{
 th, td{
   border: 1px solid black;
 }
+
+button{
+  border: 1px solid blue;
+  background-color: lightblue;
+}

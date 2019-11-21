@@ -17,9 +17,11 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Category</th>
-					<th ng-repeat="category in ctrl.uniqueRecipientCategory">{{category}}</th>
-					<th>Total</th>
+						<th ng-click="ctrl.allCategory()"><button>Clear Filter</button></th>
+
+						<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button>{{category}}</button></th>
+
+						<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,6 +47,7 @@
 			<option value="price">price</option>
 			<option value="recipient">recipient</option>
 			<option value="recipientCategory">category</option>
+			<option value="priority">prioirty</option>
 		</select>
 
 
@@ -52,7 +55,9 @@
 
 			<div class="wishlist">
 				<h2>Wishlist</h2>
-				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true | orderBy: order">
+				<div class="card" ng-repeat="item in ctrl.wishlist
+				| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+				| orderBy: order">
 					<div class="row">
 						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
 						<p>{{item.price|currency}}</p>
@@ -68,7 +73,9 @@
 
 			<div class="bought">
 				<h2>Bought</h2>
-				<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':true}:true | orderBy: order">
+				<div class="card" ng-repeat="item in ctrl.wishlist
+				| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+				| orderBy: order">
 					<div class="row">
 						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
 						<p>{{item.price|currency}}</p>

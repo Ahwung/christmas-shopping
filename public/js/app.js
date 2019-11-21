@@ -2,6 +2,19 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
+  ///////////////////
+  // functions
+  ///////////////////
+
+  // filter out the category on click
+  this.filterCategory = function(category){
+    this.searchBox = category;
+  }
+
+  this.allCategory = function(){
+    this.searchBox = undefined;
+  }
+
   // Calculate Budget and Paid for each recipient category
   this.sumMoney = function(category, complete){
 
@@ -23,7 +36,7 @@ this.changeInclude = (path) => {
         this.includePath = 'partials/' + path + '.html'
     }
 
-
+// Moves item from the Wishlist column to the Paid column and vice-verser
 this.toggleComplete = function(item){
   console.log(!item.complete);
   $http({
@@ -38,14 +51,38 @@ this.toggleComplete = function(item){
   })
 }
 
-
+///////////////////
+// routes
+///////////////////
 this.createItem = function(){
-  console.log(this.name);
-  console.log(this.recipient);
-  console.log(this.recipientCategory);
   $http({
     method: "POST",
     url: "/wishlist",
+    data: {
+      name: this.name,
+    	recipient: this.recipient,
+    	recipientCategory: this.recipientCategory,
+    	price: this.price,
+    	image: this.image,
+    	storeName: this.storeName,
+    	storeUrl: this.storeUrl,
+    	priority: this.priority,
+    	notes: this.notes,
+    	complete: this.complete
+    }
+  }).then((response) => {
+    console.log(response);
+    this.getWishlist();
+  },(error) => {
+    console.log(error);
+  })
+}
+
+
+this.editItem = function(item){
+  $http({
+    method: "PUT",
+    url: "/wishlist/"+item._id,
     data: {
       name: this.name,
     	recipient: this.recipient,
@@ -82,6 +119,10 @@ this.getWishlist = function(){
     method: "GET",
     url: "/wishlist"
   }).then((response) => {
+
+    console.log(response.data);
+    response.data.forEach(obj=>obj.recipientCategory=obj.recipientCategory.toLowerCase() )
+
     this.wishlist = response.data;
     console.log(this.wishlist);
 
@@ -96,7 +137,7 @@ this.getWishlist = function(){
         this.budgetArray.push(this.wishlist[i].price);
       }
 
-      this.recipientCategoryArray.push(this.wishlist[i].recipientCategory.toLowerCase());
+      this.recipientCategoryArray.push(this.wishlist[i].recipientCategory);
     }
 
     console.log(this.budgetArray);
@@ -117,6 +158,7 @@ this.getWishlist = function(){
 
 // Populate index page on load
 this.getWishlist();
+
 
 
 

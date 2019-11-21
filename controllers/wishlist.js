@@ -21,7 +21,7 @@ router.get("/seed", (req, res) => {
 router.get('/', (req, res) => {
     Wishlist.find({}, (err, foundWishlist) => {
         res.json(foundWishlist);
-    })
+    }).sort({price:1})
 });
 
 router.post('/', (req, res) => {
