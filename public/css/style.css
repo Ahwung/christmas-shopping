@@ -1,0 +1,21 @@
+*, .row{
+  margin: 5px;
+}
+
+img{
+  width: 200px;
+}
+
+.card{
+  border: 1px solid black;
+  width: 250px;
+}
+
+button{
+  border: none;
+}
+
+.row-button{
+  display: flex;
+  justify-content: flex-end;
+}

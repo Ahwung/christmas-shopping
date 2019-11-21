@@ -9,7 +9,7 @@ const wishlistSchema = new mongoose.Schema({
   storeUrl: String,
   priority: String,
   notes: String,
-  complete: Boolean
+  complete: { type: Boolean, default: false }
 });
 
 // create a collection

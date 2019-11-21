@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr" ng-app="MyApp">
 	<head>
 		<meta charset="utf-8" />
 		<title>HoliShopper</title>
@@ -8,9 +8,28 @@
 			charset="utf-8"
 		></script>
 		<script src="/js/app.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
-	<body>
+	<body ng-controller="MyController as ctrl">
 		<h1>HoliShopper</h1>
+		<div class="card" ng-repeat="item in ctrl.wishlist| filter:{'complete':false}:true">
+			<div class="row">
+				<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
+				<p>{{item.price|currency}}</p>
+			</div>
+
+			<img src="{{item.image}}" alt="{{item.name}} image">
+			<div class="row-button">
+				<button ng-click="ctrl.toggleComplete(item)">&#9989</button>
+				<button ng-click="ctrl.deleteItem(item)">&#10060</button>
+			</div>
+
+
+		</div>
+
+
+
+
 	</body>
 </html>
