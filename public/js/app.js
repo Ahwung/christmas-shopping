@@ -2,6 +2,22 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
+  // Calculate Budget and Paid for each recipient category
+  this.sumMoney = function(category, complete){
+
+    this.filteredWishlist = this.wishlist.filter((item) => {
+      return item.recipientCategory.toLowerCase()===category;
+    })
+
+    this.total = 0;
+    for (var i = 0; i < this.filteredWishlist.length; i++) {
+      if (this.filteredWishlist[i].complete === complete) {
+        this.total += this.filteredWishlist[i].price
+      }
+    }
+    return Math.round(this.total);
+  }
+
 
 this.toggleComplete = function(item){
   console.log(!item.complete);
@@ -63,23 +79,40 @@ this.getWishlist = function(){
   }).then((response) => {
     this.wishlist = response.data;
     console.log(this.wishlist);
+
+    // Calculate total Budget and Paid
     this.budgetArray = [0];
     this.paidArray = [0];
+    this.recipientCategoryArray = [];
     for (var i = 0; i < this.wishlist.length; i++) {
       if (this.wishlist[i].complete) {
         this.paidArray.push(this.wishlist[i].price);
       } else {
         this.budgetArray.push(this.wishlist[i].price);
       }
+
+      this.recipientCategoryArray.push(this.wishlist[i].recipientCategory.toLowerCase());
     }
 
+    console.log(this.budgetArray);
     this.paid = this.paidArray.reduce((a, b) => a + b);
     this.budget = this.budgetArray.reduce((a, b) => a + b);
+
+    // Create unique recipient category for table
+    this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
+    console.log(this.uniqueRecipientCategory);
+
+
+
+
+
 
   })
 }
 
+// Populate index page on load
 this.getWishlist();
+
 
 
 

@@ -19,3 +19,7 @@ button{
   display: flex;
   justify-content: flex-end;
 }
+
+th, td{
+  border: 1px solid black;
+}
