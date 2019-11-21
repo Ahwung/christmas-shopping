@@ -3,12 +3,12 @@ const wishlistSchema = new mongoose.Schema({
   name: String,
   recipient: String,
   recipientCategory: String,
-  price: Number,
-  image: String,
-  storeName: String,
-  storeUrl: String,
-  priority: String,
-  notes: String,
+  // price: Number,
+  // image: String,
+  // storeName: String,
+  // storeUrl: String,
+  // priority: String,
+  // notes: String,
   complete: { type: Boolean, default: false }
 });
 

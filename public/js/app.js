@@ -50,13 +50,40 @@ app.controller("MyController", ["$http", function($http){
 // }
 
 this.toggleComplete = function(item){
+  console.log(!item.complete);
   $http({
     method: "PUT",
     url: "/wishlist/"+item._id,
-    data: {complete:!item.complete}
+    data: {
+      complete:!item.complete
+    }
+  }).then((response) => {
+    console.log(response.data);
+    // this.getWishlist();
+  })
+}
+
+this.createItem = function(){
+  $http({
+    method: "POST",
+    url: "/wishlist",
+    data: {
+      name: this.name,
+    	recipient: this.recipient,
+    	recipientCategory: this.recipientCategory,
+    	price: this.price,
+    	image: this.image,
+    	storeName: this.storeName,
+    	storeUrl: this.storeUrl,
+    	priority: this.priority,
+    	notes: this.notes,
+    	complete: this.complete
+    }
   }).then((response) => {
     console.log(response.data);
     this.getWishlist();
+  },(error) => {
+    console.log(error);
   })
 }
 

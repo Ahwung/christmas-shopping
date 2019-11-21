@@ -8,7 +8,7 @@ module.exports = [
     storeName: "Crate and Barrel",
     storeUrl: "https://www.crateandbarrel.com/alura-cream-tall-vase/s454807?localedetail=US&a=1552&campaignid=622767084&adgroupid=28469965136&targetid=pla-829014536299&pla_sku=454807&pcat=HSW&ag=adult&scid=scplp454807&sc_intid=454807&gclid=Cj0KCQiA5dPuBRCrARIsAJL7oehjYuuITe9yadloT3Kba1o7MeqalTQkbwDxEc9rh11dwr1wolenKW4aAhouEALw_wcB",
     priority: "high",
-    notes: "Need to buy it soon",
+    notes: "Need to buy it soon"
 
   },
   {
