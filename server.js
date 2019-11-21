@@ -48,6 +48,7 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Use public folder for static assets
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 
 app.use(
 	session({
