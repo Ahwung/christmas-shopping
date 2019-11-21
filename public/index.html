@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
-
 		<h1>HoliShopper</h1>
 		<h2>Budget Overview</h2>
 		<table>
@@ -36,12 +35,9 @@
 				</tr>
 			</tbody>
 		</table>
-
-
 		<nav ng-include="'partials/nav.html'">
 
 		</nav>
-
 		<h2>Budget: {{ctrl.budget|currency}}</h2>
 		<h2>Paid: {{ctrl.paid|currency}}</h2>
 		<select ng-model="order">
