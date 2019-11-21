@@ -2,52 +2,6 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
-// this.toggleComplete = function(item){
-//   item.complete = !item.complete;
-//
-//   $http({
-//     method: "PUT",
-//     url: "/wishlist/" + item._id,
-//     data: {
-//       name: item.name,
-//       recipient: item.recipient,
-//       recipientCategory: item.recipientCategory,
-//       price: item.price,
-//       image: item.image,
-//       storeName: item.storeName,
-//       storeUrl: item.storeUrl,
-//       priority: item.priority,
-//       notes: item.notes,
-//       complete: item.complete
-//     }
-//   }).then((response) => {
-//     console.log(response.data.complete);
-//     this.getWishlist();
-//   })
-//
-// const controller = this;
-//
-//   $http({
-//       method: "PUT",
-//       url: "/wishlist/" + item._id,
-//       data: {
-//         name: "hello",
-//         recipient: item.recipient,
-//         recipientCategory: item.recipientCategory,
-//         price: item.price,
-//         image: item.image,
-//         storeName: item.storeName,
-//         storeUrl: item.storeUrl,
-//         priority: item.priority,
-//         notes: item.notes,
-//         complete: !item.complete
-//       }
-//     }).then(function(response){
-//       console.log(response.data);
-//       controller.getWishlist();
-//     })
-//
-// }
 
 this.toggleComplete = function(item){
   console.log(!item.complete);
@@ -59,11 +13,15 @@ this.toggleComplete = function(item){
     }
   }).then((response) => {
     console.log(response.data);
-    // this.getWishlist();
+    this.getWishlist();
   })
 }
 
+
 this.createItem = function(){
+  console.log(this.name);
+  console.log(this.recipient);
+  console.log(this.recipientCategory);
   $http({
     method: "POST",
     url: "/wishlist",
@@ -80,7 +38,7 @@ this.createItem = function(){
     	complete: this.complete
     }
   }).then((response) => {
-    console.log(response.data);
+    console.log(response);
     this.getWishlist();
   },(error) => {
     console.log(error);
@@ -96,6 +54,7 @@ this.deleteItem = function(item){
     this.getWishlist();
   })
 }
+
 
 this.getWishlist = function(){
   $http({
