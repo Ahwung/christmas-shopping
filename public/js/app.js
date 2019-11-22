@@ -113,21 +113,21 @@ this.deleteItem = function(item){
 
 this.editItem = function(item){
     this.displayEditInfo = !this.displayEditInfo
-    console.log(this.updatedName);
+    console.log(this.item.name);
     console.log(item);
   $http({
     method: "PUT",
     url: "/wishlist/"+item._id,
     data: {
-        name: this.name,
-          recipient: this.recipient,
-          recipientCategory: this.recipientCategory,
-          price: this.price,
-          image: this.image,
-          storeName: this.storeName,
-          storeUrl: this.storeUrl,
-          priority: this.priority,
-          notes: this.notes,
+        name: this.updateName,
+          recipient: this.updateRecipient,
+          recipientCategory: this.updateRecipientCategory,
+          price: this.updatePrice,
+          image: this.updateImage,
+          storeName: this.updateStoreName,
+          storeUrl: this.updateStoreUrl,
+          priority: this.updatePriority,
+          notes: this.updateNotes,
           complete: this.complete
     }
   }).then((response) => {
