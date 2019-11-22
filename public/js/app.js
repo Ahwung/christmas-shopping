@@ -74,6 +74,7 @@ this.toggleComplete = function(item){
 
 
 this.createItem = function(){
+this.displayCreateInfo = !this.displayCreateInfo
   console.log(this.name);
   console.log(this.recipient);
   console.log(this.recipientCategory);
@@ -95,7 +96,6 @@ this.createItem = function(){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
-    this.displayEditInfo = false;
   },(error) => {
     console.log(error);
   })
@@ -112,23 +112,28 @@ this.deleteItem = function(item){
 }
 
 this.editItem = function(item){
+    this.displayEditInfo = !this.displayEditInfo
+    console.log(this.updatedName);
+    console.log(item);
   $http({
     method: "PUT",
     url: "/wishlist/"+item._id,
     data: {
-      name: this.updatedName,
-        recipient: this.updatedRecipient,
-        recipientCategory: this.updatedRecipientCategory,
-        price: this.updatedPrice,
-        image: this.updatedImage,
-        storeName: this.updatedstoreName,
-        storeUrl: this.updatedStoreUrl,
-        priority: this.updatedpriority,
-        notes: this.updatedNotes,
-        complete: this.complete
+        name: this.name,
+          recipient: this.recipient,
+          recipientCategory: this.recipientCategory,
+          price: this.price,
+          image: this.image,
+          storeName: this.storeName,
+          storeUrl: this.storeUrl,
+          priority: this.priority,
+          notes: this.notes,
+          complete: this.complete
     }
   }).then((response) => {
     console.log(response);
+    this.wishlist = response.data;
+    console.log(this.wishlist);
     this.getWishlist();
   },(error) => {
     console.log(error);
