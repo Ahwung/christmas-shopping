@@ -1,35 +1,57 @@
 const app = angular.module("MyApp", []);
 
-app.controller("MyController", ["$http", function($http){
+app.controller("MyController", ["$http", function($http, $scope){
 
-  ///////////////////
-  // functions
-  ///////////////////
+this.displayEditInfo = null;
 
-  // filter out the category on click
-  this.filterCategory = function(category){
-    this.searchBox = category;
-  }
+this.sectionShow = false;
 
-  this.allCategory = function(){
-    this.searchBox = undefined;
-  }
+this.item = ''
 
-  // Calculate Budget and Paid for each recipient category
-  this.sumMoney = function(category, complete){
+this.funcSectionShow = ( item) => {
+    this.sectionShow = !this.sectionShow;
 
-    this.filteredWishlist = this.wishlist.filter((item) => {
-      return item.recipientCategory.toLowerCase()===category;
-    })
+    console.log(item);
 
-    this.total = 0;
-    for (var i = 0; i < this.filteredWishlist.length; i++) {
-      if (this.filteredWishlist[i].complete === complete) {
-        this.total += this.filteredWishlist[i].price
-      }
-    }
-    return Math.round(this.total);
-  }
+    this.item = item
+    console.log(this.item);
+
+
+}
+
+this.displayCreateModal = () => {
+    this.displayCreateInfo = !this.displayCreateInfo
+}
+
+
+///////////////////
+// functions
+///////////////////
+
+// filter out the category on click
+this.filterCategory = function(category){
+this.searchBox = category;
+}
+
+this.allCategory = function(){
+this.searchBox = undefined;
+}
+
+// Calculate Budget and Paid for each recipient category
+this.sumMoney = function(category, complete){
+
+this.filteredWishlist = this.wishlist.filter((item) => {
+return item.recipientCategory.toLowerCase()===category;
+})
+
+this.total = 0;
+for (var i = 0; i < this.filteredWishlist.length; i++) {
+if (this.filteredWishlist[i].complete === complete) {
+this.total += this.filteredWishlist[i].price
+}
+}
+return Math.round(this.total);
+}
 
 
 this.changeInclude = (path) => {
@@ -55,34 +77,10 @@ this.toggleComplete = function(item){
 // routes
 ///////////////////
 this.createItem = function(){
+
   $http({
     method: "POST",
     url: "/wishlist",
-    data: {
-      name: this.name,
-    	recipient: this.recipient,
-    	recipientCategory: this.recipientCategory,
-    	price: this.price,
-    	image: this.image,
-    	storeName: this.storeName,
-    	storeUrl: this.storeUrl,
-    	priority: this.priority,
-    	notes: this.notes,
-    	complete: this.complete
-    }
-  }).then((response) => {
-    console.log(response);
-    this.getWishlist();
-  },(error) => {
-    console.log(error);
-  })
-}
-
-
-this.editItem = function(item){
-  $http({
-    method: "PUT",
-    url: "/wishlist/"+item._id,
     data: {
       name: this.name,
     	recipient: this.recipient,
@@ -110,6 +108,61 @@ this.deleteItem = function(item){
     url: "/wishlist/"+item._id
   }).then((response) => {
     this.getWishlist();
+  })
+}
+
+this.editItem = function(item){
+
+    this.sectionShow = false;
+
+    console.log(item);
+
+    console.log(item._id);
+
+    if(this.updateName === ""){this.updateName=item.name;}
+    if(this.updateRecipient === ""){this.updateRecipient=item.recipient;}
+    if(this.updateRecipientCategory === ""){this.updateRecipientCategory=item.recipientCategory;}
+    if(this.updatePrice === ""){this.updatePrice=item.Price;}
+    if(this.updateImage === ""){this.updateImage=item.image;}
+    if(this.updateStoreName === ""){this.updateStoreName=item.storeName;}
+    if(this.updateStoreUrl === ""){this.updateStoreUrl=item.storeUrl;}
+    if(this.updatePriority === ""){this.updatePriority=item.priority;}
+    if(this.updateNotes === ""){this.updateNotes=item.notes;}
+
+
+
+  $http({
+    method: "PUT",
+    url: "/wishlist/"+item._id,
+    data: {
+        name: this.updateName,
+          recipient: this.updateRecipient,
+          recipientCategory: this.updateRecipientCategory,
+          price: this.updatePrice,
+          image: this.updateImage,
+          storeName: this.updateStoreName,
+          storeUrl: this.updateStoreUrl,
+          priority: this.updatePriority,
+          notes: this.updateNotes
+
+    }
+  }).then((response) => {
+    console.log(response);
+
+    this.getWishlist();
+
+    this.updateName = "";
+    this.updateRecipient = "";
+    this.updateRecipientCategory = "";
+    this.updatePrice = "";
+    this.updateImage = "";
+    this.updateStoreName = "";
+    this.updateStoreUrl = "";
+    this.updatePriority = "";
+    this.updateNotes = "";
+
+  },(error) => {
+    console.log(error);
   })
 }
 
