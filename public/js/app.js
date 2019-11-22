@@ -2,22 +2,25 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
+this.displayEditInfo = null;
 
 this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
 }
 
-this.openEditModal = (item) => {
-    this.displayEditInfo = !this.displayEditInfo
-    this.displayEditModal(item);
+// this.openEditModal = (item) => {
+//     this.displayEditInfo = !this.displayEditInfo
+//     this.displayEditModal(item);
+//     this.displayEditInfo = $index;
+//     console.log(item);
+//
+// }
 
-}
-
-this.displayEditModal = (item) => {
-    this.item = item;
-
-
-}
+// this.displayEditModal = (item) => {
+//     this.item = item;
+//
+//
+// }
 
 ///////////////////
 // functions
@@ -107,9 +110,12 @@ this.deleteItem = function(item){
 }
 
 this.editItem = function(item){
-    this.displayEditInfo = !this.displayEditInfo
-    console.log(this.item.name);
+    // this.displayEditInfo = !this.displayEditInfo
+    // this.displayEditInfo = null;
     console.log(item);
+
+    console.log(item._id);
+
   $http({
     method: "PUT",
     url: "/wishlist/"+item._id,
@@ -128,6 +134,7 @@ this.editItem = function(item){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
+    this.displayEditInfo = 9999;
   },(error) => {
     console.log(error);
   })
