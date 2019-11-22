@@ -8,6 +8,8 @@ this.sectionShow = false;
 
 this.item = ''
 
+this.loggedInUser = true;
+
 this.funcSectionShow = ( item) => {
     this.sectionShow = !this.sectionShow;
 
