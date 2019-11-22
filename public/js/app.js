@@ -6,12 +6,17 @@ this.displayEditInfo = null;
 
 this.sectionShow = false;
 
-this.funcSectionShow = (index) => {
-    this.sectionShow = !this.sectionShow
-    console.log(index);
-    index = this.displayEditInfo;
-
-}
+// this.funcSectionShow = (index, item) => {
+//     this.sectionShow = !this.sectionShow;
+//     // console.log(index);
+//     // console.log(this.wishlist[index]);
+//     this.displayEditInfo = index;
+//     item = this.wishlist[index];
+//
+//     console.log(this.displayEditInfo);
+//     // console.log(item);
+//
+// }
 
 this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
@@ -107,7 +112,8 @@ this.deleteItem = function(item){
 
 this.editItem = function(item){
     // this.displayEditInfo = !this.displayEditInfo
-    this.sectionShow = false;
+    // this.sectionShow = false;
+    this.displayEditInfo = null
     console.log(item);
 
     console.log(item._id);

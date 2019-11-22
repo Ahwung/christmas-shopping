@@ -93,7 +93,7 @@
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-								<button ng-click="ctrl.funcSectionShow($index)">UPDATE</button>
+								<button ng-click="ctrl.displayEditInfo = $index">UPDATE</button>
 							  </div>
 							  <div class="card-reveal">
 								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -104,42 +104,42 @@
 							    <h5>Notes</h5>
 								<p>{{item.notes}}</p>
 							  </div>
-							  <section class="modal edit zindex" ng-show="ctrl.displayEditInfo; ctrl.sectionShow">
-									<form  ng-submit="ctrl.editItem(item)">
-										<h4>Edit Wishlist Item!</h4>
+							  <section class="modal edit zindex" ng-show="$index===ctrl.displayEditInfo">
+			  					  <form  ng-submit="ctrl.editItem(item)">
+			  						  <h4>Edit Wishlist Item!</h4>
 
-										Name <input ng-model="ctrl.updateName" type="text" placeholder="{{item.name}}"><br>
-										Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{item.recipient}}" ><br>
-										Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{item.recipientCategory}}"><br>
-										Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{item.price}}"><br>
-										Image <input ng-model="ctrl.updateImage" type="text" placeholder="{{item.image}}"><br>
-										Store <input ng-model="ctrl.updatedStoreName" type="text" placeholder="{{item.storeName}}" ><br>
-										Store link <input ng-model="ctrl.updateStoreUrl" type="text" placeholder="{{item.storeUrl}}"><br>
+			  						  Name <input ng-model="ctrl.updateName" type="text" placeholder="{{item.name}}"><br>
+			  						  Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{item.recipient}}" ><br>
+			  						  Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{item.recipientCategory}}"><br>
+			  						  Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{item.price}}"><br>
+			  						  Image <input ng-model="ctrl.updateImage" type="text" placeholder="{{item.image}}"><br>
+			  						  Store <input ng-model="ctrl.updatedStoreName" type="text" placeholder="{{item.storeName}}" ><br>
+			  						  Store link <input ng-model="ctrl.updateStoreUrl" type="text" placeholder="{{item.storeUrl}}"><br>
 
-												<p>
-													<label for="High">
-														<input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
-														<span>High</span>
-													</label>
-												</p>
-												<p>
-													<label for="Medium">
-														<input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
-														<span>Medium</span>
-													</label>
-												</p>
-												<p>
-													<label for="Low">
-														<input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
-														<span>Low</span>
-													</label>
-												</p>
+			  								  <p>
+			  									  <label for="High">
+			  										  <input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+			  										  <span>High</span>
+			  									  </label>
+			  								  </p>
+			  								  <p>
+			  									  <label for="Medium">
+			  										  <input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+			  										  <span>Medium</span>
+			  									  </label>
+			  								  </p>
+			  								  <p>
+			  									  <label for="Low">
+			  										  <input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
+			  										  <span>Low</span>
+			  									  </label>
+			  								  </p>
 
-										<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
-										<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
-										<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ctrl.sectionShow = false;">Close</button>
-									</form>
-							  </section>
+			  						  <textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
+			  						  <input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
+			  						  <button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ">Close</button>
+			  					  </form>
+			  				</section>
 						</div>
 
 
@@ -167,7 +167,7 @@
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
-							  <button ng-click="ctrl.funcSectionShow($index)">UPDATE</button>
+							  <button ng-click="ctrl.displayEditInfo = $index+100">UPDATE</button>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -178,7 +178,7 @@
 							  <h5>Notes</h5>
 							  <p>{{item.notes}}</p>
 							</div>
-							<section class="modal edit zindex" ng-show="ctrl.displayEditInfo; ctrl.sectionShow">
+							<section class="modal edit zindex" ng-show="$index+100===ctrl.displayEditInfo">
 								<form  ng-submit="ctrl.editItem(item)">
 									<h4>Edit Wishlist Item!</h4>
 
@@ -211,7 +211,7 @@
 
 									<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
 									<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
-									<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ctrl.sectionShow = false;">Close</button>
+									<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ">Close</button>
 								</form>
 							</section>
 						</div>
