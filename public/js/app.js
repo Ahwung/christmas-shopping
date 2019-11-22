@@ -1,22 +1,29 @@
 const app = angular.module("MyApp", []);
 
-app.controller("MyController", ["$http", function($http){
+app.controller("MyController", ["$http", function($http, $scope){
 
 this.displayEditInfo = null;
 
 this.sectionShow = false;
 
-// this.funcSectionShow = (index, item) => {
-//     this.sectionShow = !this.sectionShow;
-//     // console.log(index);
-//     // console.log(this.wishlist[index]);
-//     this.displayEditInfo = index;
-//     item = this.wishlist[index];
-//
-//     console.log(this.displayEditInfo);
-//     // console.log(item);
-//
-// }
+this.item = ''
+
+this.funcSectionShow = (index, item) => {
+    this.sectionShow = !this.sectionShow;
+    console.log(index);
+    console.log(item);
+
+    this.item = item
+    console.log(item);
+
+    this.displayEditInfo = index
+
+    console.log(this.item);
+
+    console.log(this.displayEditInfo);
+    // console.log(item);
+
+}
 
 this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
@@ -112,8 +119,8 @@ this.deleteItem = function(item){
 
 this.editItem = function(item){
     // this.displayEditInfo = !this.displayEditInfo
-    // this.sectionShow = false;
-    this.displayEditInfo = null
+    this.sectionShow = false;
+    // this.displayEditInfo = null
     console.log(item);
 
     console.log(item._id);
@@ -136,11 +143,12 @@ this.editItem = function(item){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
-    this.displayEditInfo = 9999;
+
   },(error) => {
     console.log(error);
   })
 }
+
 
 this.getWishlist = function(){
   $http({
