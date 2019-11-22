@@ -8,20 +8,14 @@ this.sectionShow = false;
 
 this.item = ''
 
-this.funcSectionShow = (index, item) => {
+this.funcSectionShow = ( item) => {
     this.sectionShow = !this.sectionShow;
-    console.log(index);
+
     console.log(item);
 
     this.item = item
-    console.log(item);
-
-    this.displayEditInfo = index
-
     console.log(this.item);
 
-    console.log(this.displayEditInfo);
-    // console.log(item);
 
 }
 
@@ -118,12 +112,24 @@ this.deleteItem = function(item){
 }
 
 this.editItem = function(item){
-    // this.displayEditInfo = !this.displayEditInfo
+
     this.sectionShow = false;
-    // this.displayEditInfo = null
+
     console.log(item);
 
     console.log(item._id);
+
+    if(this.updateName === ""){this.updateName=item.name;}
+    if(this.updateRecipient === ""){this.updateRecipient=item.recipient;}
+    if(this.updateRecipientCategory === ""){this.updateRecipientCategory=item.recipientCategory;}
+    if(this.updatePrice === ""){this.updatePrice=item.Price;}
+    if(this.updateImage === ""){this.updateImage=item.image;}
+    if(this.updateStoreName === ""){this.updateStoreName=item.storeName;}
+    if(this.updateStoreUrl === ""){this.updateStoreUrl=item.storeUrl;}
+    if(this.updatePriority === ""){this.updatePriority=item.priority;}
+    if(this.updateNotes === ""){this.updateNotes=item.notes;}
+
+
 
   $http({
     method: "PUT",
@@ -137,12 +143,23 @@ this.editItem = function(item){
           storeName: this.updateStoreName,
           storeUrl: this.updateStoreUrl,
           priority: this.updatePriority,
-          notes: this.updateNotes,
-          complete: this.complete
+          notes: this.updateNotes
+
     }
   }).then((response) => {
     console.log(response);
+
     this.getWishlist();
+
+    this.updateName = "";
+    this.updateRecipient = "";
+    this.updateRecipientCategory = "";
+    this.updatePrice = "";
+    this.updateImage = "";
+    this.updateStoreName = "";
+    this.updateStoreUrl = "";
+    this.updatePriority = "";
+    this.updateNotes = "";
 
   },(error) => {
     console.log(error);
