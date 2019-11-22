@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" ng-app="MyApp">
 	<head>
@@ -8,91 +9,227 @@
 			charset="utf-8"
 		></script>
 		<script src="/js/app.js" charset="utf-8"></script>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" rel="stylesheet">
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
-		<h1>HoliShopper</h1>
-		<h2>Budget Overview</h2>
-		<table>
-			<thead>
-				<tr>
-						<th ng-click="ctrl.allCategory()"><button>Clear Filter</button></th>
 
-						<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button>{{category}}</button></th>
+		<div class="navbar-fixed" ng-include="'partials/nav.html'">
 
-						<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Budget</td>
-					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
-					<td>{{ctrl.budget|currency}}</td>
-				</tr>
-				<tr>
-					<td>Paid</td>
-					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
-					<td>{{ctrl.paid|currency}}</td>
-				</tr>
-			</tbody>
-		</table>
-		<nav ng-include="'partials/nav.html'">
+		</div>
 
-		</nav>
-		<h2>Budget: {{ctrl.budget|currency}}</h2>
-		<h2>Paid: {{ctrl.paid|currency}}</h2>
-		<select ng-model="order">
-			<option value="" selected="selected">Sort By</option>
-			<option value="price">price</option>
-			<option value="recipient">recipient</option>
-			<option value="recipientCategory">category</option>
-			<option value="priority">prioirty</option>
-		</select>
+		<div class="container chart">
+			<h2>Where Your Money Is Going</h2>
+			<table>
+				<thead>
+					<tr>
+							<th ng-click="ctrl.allCategory()"><button type="button" class="waves-effect waves-light btn teal darken-4">clear filter</button></th>
+
+							<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button type="button" class="waves-effect waves-light btn teal darken-4">{{category}}</button></th>
+
+							<th>total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Budget</td>
+						<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
+						<td>{{ctrl.budget|currency}}</td>
+					</tr>
+					<tr>
+						<td>Paid</td>
+						<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
+						<td>{{ctrl.paid|currency}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
 
-		<div class="row">
 
-			<div class="wishlist">
-				<h2>Wishlist</h2>
-				<div class="card" ng-repeat="item in ctrl.wishlist
+		<div class="main">
+
+
+
+
+
+
+			<div class="row">
+				<div class="sidebar col s3">
+					<h2>Budget: {{ctrl.budget|currency}}</h2>
+					<h2>Spent: {{ctrl.paid|currency}}</h2>
+				</div>
+
+
+				<div class="title col s8 offset-s4">
+					<h2>Wishlist</h2>
+
+						<select ng-model="order" class="browser-default ">
+							<option value="" selected="selected">Sort By</option>
+							<option value="price">Price</option>
+							<option value="recipient">Recipient</option>
+							<option value="recipientCategory">Category</option>
+							<option value="priority">prioirty</option>
+						</select>
+				</div>
+
+				<div class="wishlist col s8 offset-s4">
+
+						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
 				| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
 				| orderBy: order">
-					<div class="row">
-						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
-						<p>{{item.price|currency}}</p>
-					</div>
+							  <div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
+							  </div>
+							  <div class="card-content">
+								<span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
+								<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
+								<p>{{item.price |currency}}</p>
+							  </div>
+							  <div class="card-action">
+								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
+	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
+								<button ng-click="ctrl.openEditModal(item)">UPDATE</button>
+							  </div>
+							  <div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
+							    <h5>Price</h5>
+							    <p>{{item.price |currency}}</p>
+								<h5>Store</h5>
+								<a href="{{item.storeUrl}}">{{item.storeName}}</a>
+							    <h5>Notes</h5>
+								<p>{{item.notes}}</p>
+							  </div>
+							  <section class="modal edit" ng-include="'partials/show.html'" ng-if="ctrl.displayShowInfo" >
 
-					<img src="{{item.image}}" alt="{{item.name}} image">
-					<div class="row-button">
-						<button ng-click="ctrl.toggleComplete(item)">BUY</button>
-						<button ng-click="ctrl.deleteItem(item)">DELETE</button>
+							  </section>
+						</div>
+
+
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="title col s8 offset-s4">
+						<h2>Purchased</h2>
+					</div>
+
+					<div class="bought col s8 offset-s4">
+
+						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
+						| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+						| orderBy: order">
+							<div class="card-image waves-effect waves-block waves-light">
+							  <img class="activator" src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
+							</div>
+							<div class="card-content">
+							  <span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
+							  <p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p>
+							  <p>{{item.price |currency}}</p>
+							</div>
+							<div class="card-action">
+								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
+							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
+							  <button ng-click="ctrl.openEditModal(item)">UPDATE</button>
+							</div>
+							<div class="card-reveal">
+							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
+							  <h5>Price</h5>
+							  <p>{{item.price |currency}}</p>
+							  <h5>Store</h5>
+							  <a href="{{item.storeUrl}}">{{item.storeName}}</a>
+							  <h5>Notes</h5>
+							  <p>{{item.notes}}</p>
+							</div>
+							<section class="modal edit" ng-if="ctrl.displayEditInfo">
+
+								<form  ng-submit="ctrl.editItem(item)">
+									<h4>Edit Wishlist Item!</h4>
+									Name <input ng-model="ctrl.updateName" type="text" placeholder="{{ctrl.item.name}}"><br>
+									Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
+									Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
+									Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{ctrl.item.price}}"><br>
+									Image <input ng-model="ctrl.updateImage" type="text" placeholder="{{ctrl.item.image}}"><br>
+									Store <input ng-model="ctrl.updatedStoreName" type="text" placeholder="{{ctrl.item.storeName}}" ><br>
+									Store link <input ng-model="ctrl.updateStoreUrl" type="text" placeholder="{{ctrl.item.storeUrl}}"><br>
+
+											<p>
+												<label for="High">
+													<input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+													<span>High</span>
+												</label>
+											</p>
+											<p>
+												<label for="Medium">
+													<input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+													<span>Medium</span>
+												</label>
+											</p>
+											<p>
+												<label for="Low">
+													<input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
+													<span>Low</span>
+												</label>
+											</p>
+
+									<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
+									<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
+									<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.openEditModal()">Close</button>
+								</form>
+							</section>
+						</div>
+					</div>
 			</div>
-
-			<div class="bought">
-				<h2>Bought</h2>
-				<div class="card" ng-repeat="item in ctrl.wishlist
-				| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true
-				| orderBy: order">
-					<div class="row">
-						<p>{{item.name|limitTo: 11}} for {{item.recipient}}</p>
-						<p>{{item.price|currency}}</p>
-					</div>
-
-					<img src="{{item.image}}" alt="{{item.name}} image">
-					<div class="row-button">
-						<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
-						<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-					</div>
 				</div>
-			</div>
-	</div>
 
-	<section ng-include="'partials/create.html'">
+				<section class="modal edit" ng-if="ctrl.displayCreateInfo">
 
-	</section>
+					<form  ng-submit="ctrl.createItem()">
+						<h4>Create Wishlist Item!</h4>
+						Name <input ng-model="ctrl.name" type="text"><br>
+						Recipient <input ng-model="ctrl.recipient" type="text"><br>
+						Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
+						Price <input ng-model="ctrl.price" type="text"><br>
+						Image <input ng-model="ctrl.image" type="text"><br>
+						Store <input ng-model="ctrl.storeName" type="text"><br>
+						Store link <input ng-model="ctrl.storeUrl" type="text"><br>
+
+								<p>
+									<label for="High">
+										<input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+										<span>High</span>
+									</label>
+								</p>
+								<p>
+									<label for="Medium">
+										<input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+										<span>Medium</span>
+									</label>
+								</p>
+								<p>
+									<label for="Low">
+										<input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
+										<span>Low</span>
+									</label>
+								</p>
+
+						<textarea ng-model="ctrl.notes" name="notes" rows="8" cols="80" placeholder="Insert notes"></textarea><br><br>
+						<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Create New Item">
+						<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayCreateModal()">Close</button>
+					</form>
+				</section>
+
+
+
+
+
+
+
+
 
 
 	<footer ng-include="'partials/footer.html'">

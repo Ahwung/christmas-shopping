@@ -2,34 +2,51 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http){
 
-  ///////////////////
-  // functions
-  ///////////////////
 
-  // filter out the category on click
-  this.filterCategory = function(category){
-    this.searchBox = category;
-  }
+this.displayCreateModal = () => {
+    this.displayCreateInfo = !this.displayCreateInfo
+}
 
-  this.allCategory = function(){
-    this.searchBox = undefined;
-  }
+this.openEditModal = (item) => {
+    this.displayEditInfo = !this.displayEditInfo
+    this.displayEditModal(item);
 
-  // Calculate Budget and Paid for each recipient category
-  this.sumMoney = function(category, complete){
+}
 
-    this.filteredWishlist = this.wishlist.filter((item) => {
-      return item.recipientCategory.toLowerCase()===category;
-    })
+this.displayEditModal = (item) => {
+    this.item = item;
 
-    this.total = 0;
-    for (var i = 0; i < this.filteredWishlist.length; i++) {
-      if (this.filteredWishlist[i].complete === complete) {
-        this.total += this.filteredWishlist[i].price
-      }
-    }
-    return Math.round(this.total);
-  }
+
+}
+
+///////////////////
+// functions
+///////////////////
+
+// filter out the category on click
+this.filterCategory = function(category){
+this.searchBox = category;
+}
+
+this.allCategory = function(){
+this.searchBox = undefined;
+}
+
+// Calculate Budget and Paid for each recipient category
+this.sumMoney = function(category, complete){
+
+this.filteredWishlist = this.wishlist.filter((item) => {
+return item.recipientCategory.toLowerCase()===category;
+})
+
+this.total = 0;
+for (var i = 0; i < this.filteredWishlist.length; i++) {
+if (this.filteredWishlist[i].complete === complete) {
+this.total += this.filteredWishlist[i].price
+}
+}
+return Math.round(this.total);
+}
 
 
 this.changeInclude = (path) => {
@@ -55,34 +72,10 @@ this.toggleComplete = function(item){
 // routes
 ///////////////////
 this.createItem = function(){
+
   $http({
     method: "POST",
     url: "/wishlist",
-    data: {
-      name: this.name,
-    	recipient: this.recipient,
-    	recipientCategory: this.recipientCategory,
-    	price: this.price,
-    	image: this.image,
-    	storeName: this.storeName,
-    	storeUrl: this.storeUrl,
-    	priority: this.priority,
-    	notes: this.notes,
-    	complete: this.complete
-    }
-  }).then((response) => {
-    console.log(response);
-    this.getWishlist();
-  },(error) => {
-    console.log(error);
-  })
-}
-
-
-this.editItem = function(item){
-  $http({
-    method: "PUT",
-    url: "/wishlist/"+item._id,
     data: {
       name: this.name,
     	recipient: this.recipient,
@@ -113,6 +106,32 @@ this.deleteItem = function(item){
   })
 }
 
+this.editItem = function(item){
+    this.displayEditInfo = !this.displayEditInfo
+    console.log(this.item.name);
+    console.log(item);
+  $http({
+    method: "PUT",
+    url: "/wishlist/"+item._id,
+    data: {
+        name: this.updateName,
+          recipient: this.updateRecipient,
+          recipientCategory: this.updateRecipientCategory,
+          price: this.updatePrice,
+          image: this.updateImage,
+          storeName: this.updateStoreName,
+          storeUrl: this.updateStoreUrl,
+          priority: this.updatePriority,
+          notes: this.updateNotes,
+          complete: this.complete
+    }
+  }).then((response) => {
+    console.log(response);
+    this.getWishlist();
+  },(error) => {
+    console.log(error);
+  })
+}
 
 this.getWishlist = function(){
   $http({
