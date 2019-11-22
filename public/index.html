@@ -225,16 +225,16 @@
 
 <!-- EDIT MODAL -->
 				<section class="modal edit" ng-show="ctrl.sectionShow">
-					<form name="editForm" ng-submit="ctrl.editItem(ctrl.item)">
+					<form  ng-submit="ctrl.editItem(ctrl.item)">
 						<h4>Edit Wishlist Item!</h4>
 
-						Name <input ng-model="ctrl.updateName" name="myField" type="text" placeholder="{{ctrl.item.name}}"><br>
-						Recipient <input ng-model="ctrl.updateRecipient" name="myField" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
-						Recipient category <input ng-model="ctrl.updateRecipientCategory" name="myField" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
-						Price <input ng-model="ctrl.updatePrice" type="text" name="myField" placeholder="{{ctrl.item.price}}"><br>
-						Image <input ng-model="ctrl.updateImage" type="text" name="myField" placeholder="{{ctrl.item.image}}"><br>
-						Store <input ng-model="ctrl.updateStoreName" type="text" name="myField" placeholder="{{ctrl.item.storeName}}" ><br>
-						Store link <input ng-model="ctrl.updateStoreUrl" type="text" name="myField" placeholder="{{ctrl.item.storeUrl}}"><br>
+						Name <input ng-model="ctrl.updateName"  type="text" placeholder="{{ctrl.item.name}}"><br>
+						Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
+						Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
+						Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{ctrl.item.price}}"><br>
+						Image <input ng-model="ctrl.updateImage" type="text"  placeholder="{{ctrl.item.image}}"><br>
+						Store <input ng-model="ctrl.updateStoreName" type="text"  placeholder="{{ctrl.item.storeName}}" ><br>
+						Store link <input ng-model="ctrl.updateStoreUrl" type="text"  placeholder="{{ctrl.item.storeUrl}}"><br>
 
 								<p>
 									<label for="High">
