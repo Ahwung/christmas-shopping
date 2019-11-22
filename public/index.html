@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="container chart">
-			<h2>Where Your Money Is Going</h2>
+			<h2>holiShopper Budget Planner</h2>
 			<table>
 				<thead>
 					<tr>
@@ -225,42 +225,44 @@
 
 <!-- EDIT MODAL -->
 				<section class="modal edit" ng-show="ctrl.sectionShow">
-					<form  ng-submit="ctrl.editItem(ctrl.item)">
-						<h4>Edit Wishlist Item!</h4>
+					<div class="container">
+						<form  ng-submit="ctrl.editItem(ctrl.item)">
+							<h4>Edit Wishlist Item!</h4>
 
-						Name <input ng-model="ctrl.updateName"  type="text" placeholder="{{ctrl.item.name}}"><br>
-						Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
-						Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
-						Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{ctrl.item.price}}"><br>
-						Image <input ng-model="ctrl.updateImage" type="text"  placeholder="{{ctrl.item.image}}"><br>
-						Store <input ng-model="ctrl.updateStoreName" type="text"  placeholder="{{ctrl.item.storeName}}" ><br>
-						Store link <input ng-model="ctrl.updateStoreUrl" type="text"  placeholder="{{ctrl.item.storeUrl}}"><br>
+							Name <input ng-model="ctrl.updateName"  type="text" placeholder="{{ctrl.item.name}}"><br>
+							Recipient <input ng-model="ctrl.updateRecipient" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
+							Recipient category <input ng-model="ctrl.updateRecipientCategory" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
+							Price <input ng-model="ctrl.updatePrice" type="text" placeholder="{{ctrl.item.price}}"><br>
+							Image <input ng-model="ctrl.updateImage" type="text"  placeholder="{{ctrl.item.image}}"><br>
+							Store <input ng-model="ctrl.updateStoreName" type="text"  placeholder="{{ctrl.item.storeName}}" ><br>
+							Store link <input ng-model="ctrl.updateStoreUrl" type="text"  placeholder="{{ctrl.item.storeUrl}}"><br>
 
-								<p>
-									<label for="High">
-										<input id="High" ng-model="ctrl.priority"  type="radio" name="priority" value="High" >
-										<span>High</span>
-									</label>
-								</p>
-								<p>
-									<label for="Medium">
-										<input id="Medium" ng-model="ctrl.priority"  type="radio" name="priority" value="Medium" >
-										<span>Medium</span>
-									</label>
-								</p>
-								<p>
-									<label for="Low">
-										<input id="Low" ng-model="ctrl.priority" name="myField" type="radio" name="priority" value="Low"><br>
-										<span>Low</span>
-									</label>
-								</p>
+									<p>
+										<label for="high">
+											<input id="high" class="with-gap" ng-model="ctrl.priority"  type="radio" name="priority" value="High" >
+											<span>High</span>
+										</label>
+									</p>
+									<p>
+										<label for="medium">
+											<input id="medium" class="with-gap" ng-model="ctrl.priority"  type="radio" name="priority" value="Medium" >
+											<span>Medium</span>
+										</label>
+									</p>
+									<p>
+										<label for="low">
+											<input id="low" class="with-gap" ng-model="ctrl.priority"  type="radio" name="priority" value="Low"><br>
+											<span>Low</span>
+										</label>
+									</p>
 
-						<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
-						<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
-						<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.sectionShow = false ">Close</button>
-					</form>
+							<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
+							<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
+							<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.sectionShow = false ">Close</button>
+						</form>
+					</div>
+
 			  </section>
-
 
 
 

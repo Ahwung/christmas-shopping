@@ -170,3 +170,8 @@ input[type="submit"]{
 /* th, td{
   border: 1px solid black;
 } */
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+     position: relative;
+     opacity: 1;
+}

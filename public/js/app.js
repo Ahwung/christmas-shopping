@@ -2,7 +2,7 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", function($http, $scope){
 
-this.displayEditInfo = null;
+// this.displayEditInfo = null;
 
 this.sectionShow = false;
 
