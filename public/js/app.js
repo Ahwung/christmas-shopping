@@ -8,20 +8,16 @@ this.sectionShow = false;
 
 this.item = ''
 
-this.funcSectionShow = (index, item) => {
+this.funcSectionShow = (item) => {
     this.sectionShow = !this.sectionShow;
-    console.log(index);
+
     console.log(item);
 
     this.item = item
-    console.log(item);
-
-    this.displayEditInfo = index
-
     console.log(this.item);
 
-    console.log(this.displayEditInfo);
-    // console.log(item);
+    // console.log(this.displayEditInfo);
+
 
 }
 
@@ -143,6 +139,7 @@ this.editItem = function(item){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
+    
 
   },(error) => {
     console.log(error);
