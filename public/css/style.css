@@ -99,6 +99,10 @@ a{
     background-color: #004d40;
 }
 
+.chart h2 {
+    text-align: center;
+}
+
 span.card-title.activator.grey-text.text-darken-4 {
     font-size: 18px;
     margin: 0;
@@ -130,6 +134,12 @@ footer {
     height: 300px;
     position: fixed;
     left: 0;
+
+}
+
+.sidebar h2 {
+    font-size: 50px;
+    line-height: 1;
 }
 
 table {

@@ -3,7 +3,7 @@ const app = angular.module("MyApp", []);
 app.controller("MyController", ["$http", function($http){
 
 this.displayCreateInfo = false
-this.displayShowInfo = false
+this.displayEditInfo = false
 this.item = ''
 
 
@@ -11,15 +11,15 @@ this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
 }
 
-this.openShowModal = (item) => {
-    this.displayShowInfo = !this.displayShowInfo
-    this.displayShowModal(item);
+this.openEditModal = (item) => {
+    this.displayEditInfo = !this.displayEditInfo
+    this.displayEditModal(item);
 
 }
 
-this.displayShowModal = (item) => {
+this.displayEditModal = (item) => {
     this.item = item;
-    console.log(this.item.name);
+
 
 }
 
@@ -95,6 +95,7 @@ this.createItem = function(){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
+    this.displayEditInfo = false;
   },(error) => {
     console.log(error);
   })
@@ -115,15 +116,15 @@ this.editItem = function(item){
     method: "PUT",
     url: "/wishlist/"+item._id,
     data: {
-      name: this.name,
-        recipient: this.recipient,
-        recipientCategory: this.recipientCategory,
-        price: this.price,
-        image: this.image,
-        storeName: this.storeName,
-        storeUrl: this.storeUrl,
-        priority: this.priority,
-        notes: this.notes,
+      name: this.updatedName,
+        recipient: this.updatedRecipient,
+        recipientCategory: this.updatedRecipientCategory,
+        price: this.updatedPrice,
+        image: this.updatedImage,
+        storeName: this.updatedstoreName,
+        storeUrl: this.updatedStoreUrl,
+        priority: this.updatedpriority,
+        notes: this.updatedNotes,
         complete: this.complete
     }
   }).then((response) => {

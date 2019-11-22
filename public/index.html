@@ -22,31 +22,33 @@
 
 		</div>
 
+		<div class="container chart">
+			<h2>Where Your Money Is Going?</h2>
+			<table>
+				<thead>
+					<tr>
+							<th ng-click="ctrl.allCategory()"><button>clear filter</button></th>
 
-		<h2>Where Your Money Is Going?</h2>
-		<table>
-			<thead>
-				<tr>
-						<th ng-click="ctrl.allCategory()"><button>Clear Filter</button></th>
+							<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button>{{category}}</button></th>
 
-						<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button>{{category}}</button></th>
+							<th>total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Budget</td>
+						<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
+						<td>{{ctrl.budget|currency}}</td>
+					</tr>
+					<tr>
+						<td>Paid</td>
+						<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
+						<td>{{ctrl.paid|currency}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-						<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Budget</td>
-					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
-					<td>{{ctrl.budget|currency}}</td>
-				</tr>
-				<tr>
-					<td>Paid</td>
-					<td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, true)}} ({{ctrl.sumMoney(category, true)/ctrl.paid*100|number: 0}}%)</td>
-					<td>{{ctrl.paid|currency}}</td>
-				</tr>
-			</tbody>
-		</table>
 
 
 		<div class="main">
@@ -90,7 +92,7 @@
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-								<button ng-click="ctrl.deleteItem(item)">UPDATE</button>
+								<button ng-click="ctrl.openEditModal(item)">UPDATE</button>
 							  </div>
 							  <div class="card-reveal">
 								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -131,7 +133,7 @@
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
-							  <button ng-click="ctrl.deleteItem(item)">UPDATE</button>
+							  <button ng-click="ctrl.openEditModal(item)">UPDATE</button>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -150,7 +152,7 @@
 				<section class="modal edit" ng-if="ctrl.displayCreateInfo">
 
 					<form  ng-submit="ctrl.createItem()">
-						<h4>Create A Wishlist Item!</h4>
+						<h4>Create Wishlist Item!</h4>
 						Name <input ng-model="ctrl.name" type="text"><br>
 						Recipient <input ng-model="ctrl.recipient" type="text"><br>
 						Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
@@ -184,7 +186,42 @@
 					</form>
 				</section>
 
+				<section class="modal edit" ng-if="ctrl.displayEditInfo">
 
+					<form  ng-submit="ctrl.editItem(item)">
+						<h4>Edit Wishlist Item!</h4>
+						Name <input ng-model="ctrl.updatedName" type="text" placeholder="{{ctrl.item.name}}"><br>
+						Recipient <input ng-model="ctrl.updatedRecipient" type="text" placeholder="{{ctrl.item.recipient}}" ><br>
+						Recipient category <input ng-model="ctrl.updatedRecipientCategory" type="text" placeholder="{{ctrl.item.recipientCategory}}"><br>
+						Price <input ng-model="ctrl.updatedPrice" type="text" placeholder="{{ctrl.item.price}}"><br>
+						Image <input ng-model="ctrl.updatedImage" type="text" placeholder="{{ctrl.item.image}}"><br>
+						Store <input ng-model="ctrl.updatedstoreName" type="text" placeholder="{{ctrl.item.storeName}}" ><br>
+						Store link <input ng-model="ctrl.storeUrl" type="text" placeholder="{{ctrl.item.storeUrl}}"><br>
+
+								<p>
+									<label for="High">
+										<input id="High" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+										<span>High</span>
+									</label>
+								</p>
+								<p>
+									<label for="Medium">
+										<input id="Medium" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+										<span>Medium</span>
+									</label>
+								</p>
+								<p>
+									<label for="Low">
+										<input id="Low" ng-model="ctrl.priority" type="radio" name="priority" value="Low"><br>
+										<span>Low</span>
+									</label>
+								</p>
+
+						<textarea ng-model="ctrl.updatedNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
+						<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
+						<button class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.openEditModal()">Close</button>
+					</form>
+				</section>
 
 
 
