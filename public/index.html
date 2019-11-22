@@ -93,7 +93,7 @@
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-								<button ng-click="ctrl.displayEditInfo = $index">UPDATE</button>
+								<button ng-click="ctrl.funcSectionShow($index)">UPDATE</button>
 							  </div>
 							  <div class="card-reveal">
 								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -104,7 +104,7 @@
 							    <h5>Notes</h5>
 								<p>{{item.notes}}</p>
 							  </div>
-							  <section class="modal edit zindex" ng-show="$index===ctrl.displayEditInfo">
+							  <section class="modal edit zindex" ng-show="ctrl.displayEditInfo; ctrl.sectionShow">
 									<form  ng-submit="ctrl.editItem(item)">
 										<h4>Edit Wishlist Item!</h4>
 
@@ -137,7 +137,7 @@
 
 										<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
 										<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
-										<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null">Close</button>
+										<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ctrl.sectionShow = false;">Close</button>
 									</form>
 							  </section>
 						</div>
@@ -167,7 +167,7 @@
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
-							  <button ng-click="ctrl.displayEditInfo = $index+100">UPDATE</button>
+							  <button ng-click="ctrl.funcSectionShow($index)">UPDATE</button>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -178,7 +178,7 @@
 							  <h5>Notes</h5>
 							  <p>{{item.notes}}</p>
 							</div>
-							<section class="modal edit zindex" ng-show="$index+100===ctrl.displayEditInfo">
+							<section class="modal edit zindex" ng-show="ctrl.displayEditInfo; ctrl.sectionShow">
 								<form  ng-submit="ctrl.editItem(item)">
 									<h4>Edit Wishlist Item!</h4>
 
@@ -211,7 +211,7 @@
 
 									<textarea ng-model="ctrl.updateNotes" name="notes" rows="8" cols="80" placeholder="{{ctrl.item.notes}}"></textarea><br><br>
 									<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Update Item">
-									<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null">Close</button>
+									<button type="button" class="waves-effect waves-light btn teal darken-4" ng-click="ctrl.displayEditInfo = null; ctrl.sectionShow = false;">Close</button>
 								</form>
 							</section>
 						</div>

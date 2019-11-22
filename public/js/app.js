@@ -4,23 +4,19 @@ app.controller("MyController", ["$http", function($http){
 
 this.displayEditInfo = null;
 
+this.sectionShow = false;
+
+this.funcSectionShow = (index) => {
+    this.sectionShow = !this.sectionShow
+    console.log(index);
+    index = this.displayEditInfo;
+
+}
+
 this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
 }
 
-// this.openEditModal = (item) => {
-//     this.displayEditInfo = !this.displayEditInfo
-//     this.displayEditModal(item);
-//     this.displayEditInfo = $index;
-//     console.log(item);
-//
-// }
-
-// this.displayEditModal = (item) => {
-//     this.item = item;
-//
-//
-// }
 
 ///////////////////
 // functions
@@ -111,7 +107,7 @@ this.deleteItem = function(item){
 
 this.editItem = function(item){
     // this.displayEditInfo = !this.displayEditInfo
-    // this.displayEditInfo = null;
+    this.sectionShow = false;
     console.log(item);
 
     console.log(item._id);
