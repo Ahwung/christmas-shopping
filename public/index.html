@@ -93,7 +93,7 @@
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-								<button ng-click="ctrl.funcSectionShow(item); ">UPDATE</button>
+								<button ng-click="ctrl.funcSectionShow( item); ctrl.updateNotes=''">UPDATE</button>
 							  </div>
 							  <div class="card-reveal">
 								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -133,7 +133,7 @@
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
-							  <button ng-click="ctrl.funcSectionShow(item);">UPDATE</button>
+							  <button ng-click="ctrl.funcSectionShow( item);">UPDATE</button>
 							</div>
 							<div class="card-reveal">
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
@@ -144,7 +144,6 @@
 							  <h5>Notes</h5>
 							  <p>{{item.notes}}</p>
 							</div>
-							
 						</div>
 					</div>
 			</div>
