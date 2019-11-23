@@ -11,9 +11,17 @@ this.item = ''
 this.loggedInUser = false;
 
 this.signup = function(){
-    this.loggedInUser = {
-        username: "signuptest"
-    }
+    $http({
+        url: '/users',
+        method: 'POST',
+        data: {
+            username: this.signupUsername,
+            password: this.signupPassword
+        }
+    }).then((response) => {
+        this.loggedInUser = response.data
+        console.log(this.loggedInUser)
+    })
 }
 
 this.login = function(){
