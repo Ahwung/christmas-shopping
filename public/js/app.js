@@ -204,11 +204,15 @@ this.getWishlist = function(){
     var i = 0;
     this.slideImage = this.wishlist[0].image;
     this.slideLink = this.wishlist[0].storeUrl;
-    this.showSlideshow = true;
+    this.slideImage1 = this.wishlist[0+1].image;
+    this.slideLink1 = this.wishlist[0+1].storeUrl;
+    this.slideImage2 = this.wishlist[0+2].image;
+    this.slideLink2 = this.wishlist[0+2].storeUrl;
+
 
     slideShow = () => {
 
-      if (i >= this.wishlist.length-1) {
+      if (i >= this.wishlist.length-3) {
         i= -1;
       }
       i++;
@@ -220,6 +224,10 @@ this.getWishlist = function(){
 
       this.slideImage = this.wishlist[i].image;
       this.slideLink = this.wishlist[i].storeUrl;
+      this.slideImage1 = this.wishlist[i+1].image;
+      this.slideLink1 = this.wishlist[i+1].storeUrl;
+      this.slideImage2 = this.wishlist[i+2].image;
+      this.slideLink2 = this.wishlist[i+2].storeUrl;
       console.log(this.slideLink);
       console.log(i);
 
@@ -230,7 +238,6 @@ this.getWishlist = function(){
     }
 
     slideShow();
-
 
   })
 }
