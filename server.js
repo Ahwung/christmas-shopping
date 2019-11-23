@@ -13,9 +13,9 @@ require("dotenv").config();
 
 
 const wishlistController = require("./controllers/wishlist.js");
+const usersController = require('./controllers/users.js')
 
 // REPLACE THIS WITH NEW CONTROLLERS
-// const usersController = require('./controllers/users.js')
 // const sessionsController = require('./controllers/sessions.js')
 
 // ========================
@@ -60,9 +60,10 @@ app.use(
 );
 
 app.use("/wishlist", wishlistController);
+app.use('/users', usersController)
 
 // REPLACE THIS LATER
-// app.use('/users', usersController)
+
 // app.use('/sessions', sessionsController)
 
 // ========================
