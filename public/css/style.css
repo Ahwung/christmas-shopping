@@ -167,6 +167,18 @@ table {
 input[type="submit"]{
     vertical-align: middle;
 }
-/* th, td{
-  border: 1px solid black;
-} */
+
+/* CSS for slideshow */
+h3{
+  text-align: center;
+}
+
+.slides {
+    position: relative;
+    width: 250px;
+    /* height: 50px; */
+    padding: 0px;
+    margin: 0 auto;
+    list-style-type: none;
+    display: block;
+}

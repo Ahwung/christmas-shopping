@@ -1,7 +1,11 @@
 const app = angular.module("MyApp", []);
 
-app.controller("MyController", ["$http", function($http, $scope){
+app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
 
+
+///////////////////
+// functions
+///////////////////
 this.displayEditInfo = null;
 
 this.sectionShow = false;
@@ -23,10 +27,6 @@ this.displayCreateModal = () => {
     this.displayCreateInfo = !this.displayCreateInfo
 }
 
-
-///////////////////
-// functions
-///////////////////
 
 // filter out the category on click
 this.filterCategory = function(category){
@@ -201,9 +201,32 @@ this.getWishlist = function(){
     this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
     console.log(this.uniqueRecipientCategory);
 
+    // functions for slideshow
+    var i = -1;
+    this.slideImage = this.wishlist[0].image;
+    this.slideLink = this.wishlist[0].storeUrl;
 
+    slideShow = () => {
+      if (i >= this.wishlist.length-1) {
+        i= -1;
+      }
+      i++;
 
+    console.log(this.slideImage);
 
+    $timeout(() => {
+
+      this.slideImage = this.wishlist[i].image;
+      this.slideLink = this.wishlist[i].storeUrl;
+      console.log(this.slideLink);
+      console.log(i);
+
+      slideShow(this.wishlist);
+
+    }, 3000)
+    }
+
+    slideShow();
 
 
   })
