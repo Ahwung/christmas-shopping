@@ -25,6 +25,7 @@ router.post('/', (req, res) => {
             const doesPasswordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
             if(doesPasswordMatch){
             	req.session.user = foundUser
+            	// console.log(req.session.user)
                 res.json(foundUser)
             } else {
                 res.json({
