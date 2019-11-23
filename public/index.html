@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr" ng-app="MyApp">
 	<head>
 		<meta charset="utf-8" />
-		<title>HoliShopper</title>
+		<title>holiShopper</title>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"
 			charset="utf-8"
@@ -62,7 +62,7 @@
 			<div class="row">
 				<div class="sidebar col s3">
 					<h2>Budget: {{ctrl.budget|currency}}</h2>
-					<h2>Spent: {{ctrl.paid|currency}}</h2>
+					<h2>Paid: {{ctrl.paid|currency}}</h2>
 				</div>
 
 <!-- WISHLIST -->
@@ -89,7 +89,7 @@
 							  <div class="card-content">
 								<span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
 								<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
-								<p>{{item.price |currency}}</p>
+								<span class="tags"><p>{{item.price |currency}}</p><p id="cattag2">{{item.recipientCategory}}</p></span>
 							  </div>
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
@@ -129,7 +129,8 @@
 							<div class="card-content">
 							  <span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
 							  <p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p>
-							  <p>{{item.price |currency}}</p>
+							  	<span class="tags"><p>{{item.price |currency}}</p><p id="cattag">{{item.recipientCategory}}</p></span>
+
 							</div>
 							<div class="card-action">
 								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>

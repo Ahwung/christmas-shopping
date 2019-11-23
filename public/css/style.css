@@ -121,6 +121,7 @@ a{
     text-align: center;
     font-family: 'Pacifico', cursive;
     color: #b71c1c;
+    font-size: 55px;
 }
 
 span.card-title.activator.grey-text.text-darken-4 {
@@ -144,7 +145,7 @@ footer {
 }
 
 .title h2 {
-    font-size: 50px;
+    font-size: 45px;
     color: #b71c1c;
     font-weight: 500;
     font-family: 'Pacifico', cursive;
@@ -183,4 +184,29 @@ input[type="radio"]:not(:checked), input[type="radio"]:checked {
 
 .brand-logo {
     font-family: 'Pacifico', cursive;
+}
+
+span.tags {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#cattag {
+    background-color: #004d40;
+    color: white;
+    padding: 3px;
+    font-weight: 500;
+}
+
+#cattag2 {
+    background-color: #004d40;
+    color: white;
+    padding: 3px;
+    font-weight: 500;
+}
+
+.card-content a {
+    color: #004d40;
+    text-decoration: underline;
 }
