@@ -32,8 +32,8 @@
 			</form>
 			<h2>Log In</h2>
 			<form ng-submit="ctrl.login()">
-				Username: <input type="text">
-				Password: <input type="password">
+				Username: <input type="text" ng-model="ctrl.loginUsername">
+				Password: <input type="password" ng-model="ctrl.loginPassword">
 				<input type="submit" value="Log In">
 			</form>
 		</section>

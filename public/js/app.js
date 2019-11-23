@@ -25,9 +25,30 @@ this.signup = function(){
 }
 
 this.login = function(){
-    this.loggedInUser = {
-        username: "logintest"
-    }
+    $http({
+        url:'/session',
+        method:'POST',
+        data: {
+            username: this.loginUsername,
+            password: this.loginPassword
+        }
+    }).then((response) => {
+        if(response.data.username){
+            this.loggedInUser = response.data;
+        } else {
+            this.loginUsername = null;
+            this.loginPassword = null;
+        }
+    })
+}
+
+this.logout = function(){
+    $http({
+        url:'/session',
+        method:'DELETE'
+    }).then(() => {
+        this.loggedInUser = false;
+    })
 }
 
 this.funcSectionShow = ( item) => {
@@ -234,7 +255,14 @@ this.getWishlist = function(){
 // Populate index page on load
 this.getWishlist();
 
-
+$http({
+    method:'GET',
+    url:'/session'
+}).then((response) => {
+    if(response.data.username){
+        this.loggedInUser = response.data;
+    }
+});
 
 
 
