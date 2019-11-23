@@ -1,6 +1,6 @@
 const app = angular.module("MyApp", []);
 
-app.controller("MyController", ["$http", "$timeout", function($http, $timeout, $scope, $interval){
+app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
 
 
 ///////////////////
