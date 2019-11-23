@@ -86,7 +86,7 @@
 
 						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
 				| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
-				| orderBy: order" ng-class="(item.priority) ? 'high' : ''">
+				| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
 							  <div class="card-image waves-effect waves-block waves-light">
 								<img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
 							  </div>
@@ -95,6 +95,7 @@
 								<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
 								<span class="tags"><p>{{item.price |currency}}</p><p id="cattag2">{{item.recipientCategory}}</p></span>
 							  </div>
+							  <p>{{item.priority}}</p>
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
@@ -211,17 +212,17 @@
 
 									Priority<br/>
 									<label for="high">
-											<input type="radio" id="high" ng-model="ctrl.priority" class="with-gap"  name="priority" value="high" checked />
+											<input type="radio" id="high" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="high" if(ctrl.item.priority === 'high'){ checked }  />
 											<span>High</span>
 										</label><br/>
 
 										<label for="medium">
-											<input type="radio" id="medium" ng-model="ctrl.priority" class="with-gap"  name="priority" value="medium" />
+											<input type="radio" id="medium" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="medium" if(ctrl.item.priority === 'medium'){ checked }/>
 											<span>Medium</span>
 										</label><br/>
 
 										<label for="low">
-											<input type="radio" id="low" ng-model="ctrl.priority" class="with-gap"  name="priority" value="low" />
+											<input type="radio" id="low" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="low" if(ctrl.item.priority === 'low'){ checked }/>
 											<span>Low</span>
 										</label><br/>
 
