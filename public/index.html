@@ -8,6 +8,7 @@
 			src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"
 			charset="utf-8"
 		></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
 		<script src="/js/app.js" charset="utf-8"></script>
 		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -23,14 +24,15 @@
 
 		</div>
 
+		<h3>Trending Wishlist</h3>
 		<div class="carousel">
-			<h3>Trending Holiday Gifts</h3>
-			<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img  ng-src="{{ctrl.slideImage}}" alt=""></a>
-
+			<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage}}" alt=""></a>
+			<a href="{{ctrl.slideLink1}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage1}}" alt=""></a>
+			<a href="{{ctrl.slideLink2}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage2}}" alt=""></a>
 		</div>
 
-
 		<div class="container chart">
+
 			<h2>holiShopper Budget Planner</h2>
 			<p>Organize your holiday shopping by clicking on the green buttons to filter your wishlist!</p>
 			<table class="highlight">
