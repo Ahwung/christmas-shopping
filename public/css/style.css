@@ -160,8 +160,16 @@ footer {
     margin: 0;
 }
 
- h6 {
+footer a{
+    color: black;
+    text-decoration: underline;
     margin: 20px;
+    line-height: 55px;
+}
+
+ footer h6 {
+    margin: 20px;
+    font-family: 'Pacifico', cursive;
 }
 
 .title h2 {
