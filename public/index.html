@@ -23,6 +23,10 @@
 
 		</div>
 
+		<h3>Trending Wishlist</h3>
+		<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img  ng-src="{{ctrl.slideImage}}" alt=""></a>
+
+
 		<div class="container chart">
 			<h2>holiShopper Budget Planner</h2>
 			<table class="highlight">
@@ -82,7 +86,7 @@
 
 						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
 				| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
-				| orderBy: order">
+				| orderBy: order" ng-class="(item.priority) ? 'high' : ''">
 							  <div class="card-image waves-effect waves-block waves-light">
 								<img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
 							  </div>
@@ -165,20 +169,20 @@
 							Store link <input ng-model="ctrl.storeUrl" type="text"><br>
 							Priority
 									<p>
-										<label for="High">
-											<input id="High" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="High" >
+										<label for="high">
+											<input id="high" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="high" >
 											<span>High</span>
 										</label>
 									</p>
 									<p>
-										<label for="Medium">
-											<input id="Medium" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="Medium" >
+										<label for="medium">
+											<input id="medium" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="medium" >
 											<span>Medium</span>
 										</label>
 									</p>
 									<p>
-										<label for="Low">
-											<input id="Low" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="Low">
+										<label for="low">
+											<input id="low" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="low">
 											<span>Low</span>
 										</label>
 									</p>
@@ -207,17 +211,17 @@
 
 									Priority<br/>
 									<label for="high">
-											<input type="radio" id="high" ng-model="ctrl.priority" class="with-gap"  name="priority" value="High" checked />
+											<input type="radio" id="high" ng-model="ctrl.priority" class="with-gap"  name="priority" value="high" checked />
 											<span>High</span>
 										</label><br/>
 
 										<label for="medium">
-											<input type="radio" id="medium" ng-model="ctrl.priority" class="with-gap"  name="priority" value="Medium" />
+											<input type="radio" id="medium" ng-model="ctrl.priority" class="with-gap"  name="priority" value="medium" />
 											<span>Medium</span>
 										</label><br/>
 
 										<label for="low">
-											<input type="radio" id="low" ng-model="ctrl.priority" class="with-gap"  name="priority" value="Low" />
+											<input type="radio" id="low" ng-model="ctrl.priority" class="with-gap"  name="priority" value="low" />
 											<span>Low</span>
 										</label><br/>
 
