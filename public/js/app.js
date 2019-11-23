@@ -8,7 +8,19 @@ this.sectionShow = false;
 
 this.item = ''
 
-this.loggedInUser = true;
+this.loggedInUser = false;
+
+this.signup = function(){
+    this.loggedInUser = {
+        username: "signuptest"
+    }
+}
+
+this.login = function(){
+    this.loggedInUser = {
+        username: "logintest"
+    }
+}
 
 this.funcSectionShow = ( item) => {
     this.sectionShow = !this.sectionShow;

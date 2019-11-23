@@ -25,13 +25,13 @@
 		<!-- Log In and Sign up -->
 		<section ng-if="ctrl.loggedInUser === false">
 			<h2>Sign Up</h2>
-			<form>
+			<form ng-submit="ctrl.signup()">
 				Username: <input type="text">
 				Password: <input type="password">
 				<input type="submit" value="Sign Up">
 			</form>
 			<h2>Log In</h2>
-			<form>
+			<form ng-submit="ctrl.login()">
 				Username: <input type="text">
 				Password: <input type="password">
 				<input type="submit" value="Log In">
@@ -39,8 +39,9 @@
 		</section>
 
 		<section ng-if="ctrl.loggedInUser !== false">
+			<h3>Welcome {{ctrl.loggedInUser.username}}</h3>
 			<div class="container chart">
-				<h2>Where Your Money Is Going</h2>
+				<h4>Where Your Money Is Going</h4>
 				<table>
 					<thead>
 						<tr>
