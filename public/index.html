@@ -64,65 +64,72 @@
 
 
 			<div class="row">
-				<div class="sidebar col s3">
+				<div class="sidebar col s15">
 					<h2>Budget: {{ctrl.budget|currency}}</h2>
 					<h2>Paid: {{ctrl.paid|currency}}</h2>
 				</div>
 
 <!-- WISHLIST -->
-				<div class="title col s8 offset-s4">
-					<h2>Wishlist</h2>
 
-						<select ng-model="order" class="browser-default ">
-							<option value="" selected="selected">Sort By</option>
-							<option value="price">Price</option>
-							<option value="recipient">Recipient</option>
-							<option value="recipientCategory">Category</option>
-							<option value="priority">prioirty</option>
-						</select>
-				</div>
+				<div class="wrapper">
+					<div class="divwishlist">
+						<div class="title col s11 offset-s1">
+							<h2>Wishlist</h2>
 
-				<div class="wishlist col s8 offset-s4">
-
-						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
-				| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
-				| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
-							  <div class="card-image waves-effect waves-block waves-light">
-								<img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
-							  </div>
-							  <div class="card-content">
-								<span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
-								<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
-								<span class="tags"><p>{{item.price |currency}}</p><p id="cattag2">{{item.recipientCategory}}</p></span>
-							  </div>
-							  <div class="card-action">
-								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
-	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
-								<button ng-click="ctrl.funcSectionShow( item); ctrl.updateNotes=''">UPDATE</button>
-							  </div>
-							  <div class="card-reveal">
-								<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
-							    <h5>Price</h5>
-							    <p>{{item.price |currency}}</p>
-								<h5>Store</h5>
-								<a href="{{item.storeUrl}}">{{item.storeName}}</a>
-							    <h5>Notes</h5>
-								<p>{{item.notes}}</p>
-							  </div>
-
+								<select ng-model="order" class="browser-default ">
+									<option value="" selected="selected">Sort By</option>
+									<option value="price">Price</option>
+									<option value="recipient">Recipient</option>
+									<option value="recipientCategory">Category</option>
+									<option value="priority">prioirty</option>
+								</select>
 						</div>
 
+						<div class="wishlist col s11 offset-s1">
 
+								<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
+						| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+						| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
+									  <div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
+									  </div>
+									  <div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">more_vert</i></span>
+										<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
+										<span class="tags"><p>{{item.price |currency}}</p><p id="cattag2">{{item.recipientCategory}}</p></span>
+									  </div>
+									  <div class="card-action">
+										  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
+										<button ng-click="ctrl.deleteItem(item)">DELETE</button>
+										<button ng-click="ctrl.funcSectionShow( item); ctrl.updateNotes=''">UPDATE</button>
+									  </div>
+									  <div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
+										<h5>Price</h5>
+										<p>{{item.price |currency}}</p>
+										<h5>Store</h5>
+										<a href="{{item.storeUrl}}">{{item.storeName}}</a>
+										<h5>Notes</h5>
+										<p>{{item.notes}}</p>
+									  </div>
+
+								</div>
+
+
+							</div>
 					</div>
 
 
-				<div class="row">
-					<div class="title col s8 offset-s4">
+
+
+
+
+					<div class="title col s11 offset-s1">
 <!-- PURCHASED						 -->
 					<h2>Purchased</h2>
 					</div>
 
-					<div class="bought col s8 offset-s4">
+					<div class="bought col s11 offset-s1">
 
 						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
 						| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true
@@ -152,6 +159,7 @@
 							</div>
 						</div>
 					</div>
+
 			</div>
 				</div>
 				</div>

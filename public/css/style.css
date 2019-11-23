@@ -154,6 +154,7 @@ footer {
     color: #b71c1c;
     font-weight: 500;
     font-family: 'Pacifico', cursive;
+    margin-left: 0px;
 
 }
 
@@ -166,7 +167,9 @@ footer {
     top: 200px;
     font-family: 'Pacifico', cursive;
     line-height: 2;
-    bottom: 250px;
+    bottom: 200px;
+    margin-left: 0px;
+    width: 25%;
 }
 
 .sidebar h2 {
@@ -230,4 +233,9 @@ h3{
     margin: 0 auto;
     list-style-type: none;
     display: block;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
 }
