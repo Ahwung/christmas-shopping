@@ -95,7 +95,6 @@
 								<span><p><a href="{{item.storeUrl}}">{{item.storeName}}</a></p></span>
 								<span class="tags"><p>{{item.price |currency}}</p><p id="cattag2">{{item.recipientCategory}}</p></span>
 							  </div>
-							  <p>{{item.priority}}</p>
 							  <div class="card-action">
 								  <button ng-click="ctrl.toggleComplete(item)">BUY</button>
 	  							<button ng-click="ctrl.deleteItem(item)">DELETE</button>
@@ -115,7 +114,7 @@
 
 
 					</div>
-				</div>
+
 
 				<div class="row">
 					<div class="title col s8 offset-s4">
@@ -155,7 +154,7 @@
 					</div>
 			</div>
 				</div>
-
+				</div>
 <!-- CREATE MODAL -->
 				<section class="modal edit" ng-if="ctrl.displayCreateInfo">
 					<div class="container">
@@ -212,29 +211,17 @@
 
 									Priority<br/>
 									<label for="high">
-<<<<<<< HEAD
 											<input type="radio" id="high" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="high" if(ctrl.item.priority === 'high'){ checked }  />
-=======
-											<input type="radio" id="high" ng-model="ctrl.priority" class="with-gap"  name="priority" value="high" checked />
->>>>>>> 4f1e96b653ca44ac02eb4da72718062b91ad52b5
 											<span>High</span>
 										</label><br/>
 
 										<label for="medium">
-<<<<<<< HEAD
 											<input type="radio" id="medium" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="medium" if(ctrl.item.priority === 'medium'){ checked }/>
-=======
-											<input type="radio" id="medium" ng-model="ctrl.priority" class="with-gap"  name="priority" value="medium" />
->>>>>>> 4f1e96b653ca44ac02eb4da72718062b91ad52b5
 											<span>Medium</span>
 										</label><br/>
 
 										<label for="low">
-<<<<<<< HEAD
 											<input type="radio" id="low" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="low" if(ctrl.item.priority === 'low'){ checked }/>
-=======
-											<input type="radio" id="low" ng-model="ctrl.priority" class="with-gap"  name="priority" value="low" />
->>>>>>> 4f1e96b653ca44ac02eb4da72718062b91ad52b5
 											<span>Low</span>
 										</label><br/>
 

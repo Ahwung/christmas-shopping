@@ -161,11 +161,12 @@ footer {
     background: #004d40;
     color: white;
     height: 220px;
-    position: fixed;
+    position: sticky;
     left: 0;
+    top: 200px;
     font-family: 'Pacifico', cursive;
-    line-height: 2;;
-
+    line-height: 2;
+    bottom: 250px;
 }
 
 .sidebar h2 {
