@@ -125,7 +125,8 @@ this.createItem = function(){
     method: "POST",
     url: "/wishlist",
     data: {
-      name: this.name,
+        username: this.loggedInUser.username,
+        name: this.name,
     	recipient: this.recipient,
     	recipientCategory: this.recipientCategory,
     	price: this.price,
