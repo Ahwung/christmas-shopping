@@ -8,11 +8,15 @@ body {
     width: 100%;
     background-image: url(https://storage.needpix.com/rsynced_images/silver-and-white-christmas-backgrou.jpg);
     background-repeat: repeat;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
 }
 
 main {
     margin: 20px;
+    flex: 1 0 auto;
 }
 
 *, .row{
@@ -116,10 +120,14 @@ a{
 
 
 .chart {
-    background-color: white;
+    background-color: lightgrey;
     height: 350px;
-    margin-top: 100px;
+    margin-top: 45px;
+    margin-bottom: 100px;
     padding: 10px;
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .chart h2 {
@@ -127,6 +135,13 @@ a{
     font-family: 'Pacifico', cursive;
     color: #b71c1c;
     font-size: 55px;
+}
+
+.chart p {
+    text-align: center;
+    font-weight: 600;
+    padding: 10px;
+
 }
 
 span.card-title.activator.grey-text.text-darken-4 {
@@ -151,7 +166,7 @@ footer {
 
 .title h2 {
     font-size: 45px;
-    color: #b71c1c;
+    color:#b71c1c;
     font-weight: 500;
     font-family: 'Pacifico', cursive;
     margin-left: 0px;
@@ -173,8 +188,9 @@ footer {
 }
 
 .sidebar h2 {
-    font-size: 40px;
+    font-size: 38px;
     line-height: 1;
+    vertical-align: middle;
 }
 
 table {
@@ -238,4 +254,9 @@ h3{
 .row {
     display: flex;
     justify-content: space-between;
+}
+
+.carousel h3 {
+    color: #004d40;
+    font-weight: 600;
 }
