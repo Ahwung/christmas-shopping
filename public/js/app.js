@@ -1,6 +1,6 @@
 const app = angular.module("MyApp", []);
 
-app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
+app.controller("MyController", ["$http", "$timeout", function($http, $timeout, $scope, $interval){
 
 
 ///////////////////
@@ -234,8 +234,6 @@ this.getWishlist = function(){
 
 // Populate index page on load
 this.getWishlist();
-
-
 
 
 
