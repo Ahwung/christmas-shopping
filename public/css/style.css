@@ -184,7 +184,7 @@ footer a{
 .sidebar {
     background: #004d40;
     color: white;
-    height: 220px;
+    height: 400px;
     position: sticky;
     left: 0;
     top: 200px;
@@ -193,12 +193,15 @@ footer a{
     bottom: 200px;
     margin-left: 0px;
     width: 25%;
+    overflow: scroll;
+
 }
 
 .sidebar h2 {
-    font-size: 38px;
+    font-size: 30px;
     line-height: 1;
     vertical-align: middle;
+
 }
 
 table {
@@ -267,4 +270,27 @@ h3{
 .carousel h3 {
     color: #004d40;
     font-weight: 600;
+}
+
+.countdown {
+    border-bottom: 3px dotted #b71c1c;
+    padding-bottom: 10px;
+}
+
+.countdown h4 {
+    font-size: 25px;
+    /* font-family: Helvetica, sans-serif; */
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-weight: 600;
+
+}
+
+.countdown span {
+    font-size: 35px;
+    line-height: 1;
+    color: white;
+    text-shadow: 2px 2px 2px #b71c1c;
+
+
 }
