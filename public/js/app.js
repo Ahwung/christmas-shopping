@@ -2,7 +2,6 @@ const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
 
-
 ///////////////////
 // functions
 ///////////////////
@@ -202,15 +201,18 @@ this.getWishlist = function(){
     console.log(this.uniqueRecipientCategory);
 
     // functions for slideshow
-    var i = -1;
+    var i = 0;
     this.slideImage = this.wishlist[0].image;
     this.slideLink = this.wishlist[0].storeUrl;
+    this.showSlideshow = true;
 
     slideShow = () => {
+
       if (i >= this.wishlist.length-1) {
         i= -1;
       }
       i++;
+
 
     console.log(this.slideImage);
 
@@ -221,9 +223,10 @@ this.getWishlist = function(){
       console.log(this.slideLink);
       console.log(i);
 
-      slideShow(this.wishlist);
+      slideShow();
 
     }, 3000)
+
     }
 
     slideShow();
