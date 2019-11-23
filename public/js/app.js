@@ -201,30 +201,42 @@ this.getWishlist = function(){
     this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
     console.log(this.uniqueRecipientCategory);
 
-    // functions for slideshow
-    var i = -1;
-    this.slideImage = this.wishlist[0].image;
-    this.slideLink = this.wishlist[0].storeUrl;
+    // functions for slideshowlet k = 0;
+                        let k = 0;
+                        this.slideImage = this.wishlist[0].image;
+                        this.slideLink = this.wishlist[0].storeUrl;
+                        this.slideImage1 = this.wishlist[0+1].image;
+                        this.slideLink1 = this.wishlist[0+1].storeUrl;
+                        this.slideImage2 = this.wishlist[0+2].image;
+                        this.slideLink2 = this.wishlist[0+2].storeUrl;
 
-    slideShow = () => {
-      if (i >= this.wishlist.length-1) {
-        i= -1;
-      }
-      i++;
 
-    console.log(this.slideImage);
+                        slideShow = () => {
 
-    $timeout(() => {
+                          if (k >= this.wishlist.length-3) {
+                            k= -1;
+                          }
+                          k++;
 
-      this.slideImage = this.wishlist[i].image;
-      this.slideLink = this.wishlist[i].storeUrl;
-      console.log(this.slideLink);
-      console.log(i);
 
-      slideShow(this.wishlist);
+                        console.log(this.slideImage);
 
-    }, 3000)
-    }
+                        $timeout(() => {
+
+                          this.slideImage = this.wishlist[k].image;
+                          this.slideLink = this.wishlist[k].storeUrl;
+                          this.slideImage1 = this.wishlist[k+1].image;
+                          this.slideLink1 = this.wishlist[k+1].storeUrl;
+                          this.slideImage2 = this.wishlist[k+2].image;
+                          this.slideLink2 = this.wishlist[k+2].storeUrl;
+                          console.log(this.slideLink);
+                          console.log(k);
+
+                          slideShow();
+
+                        }, 3000)
+
+                        }
 
     slideShow();
 
@@ -243,7 +255,7 @@ this.getWishlist();
 var timer;
 
 var compareDate = new Date('December 25, 2019 23:15:30');
-compareDate.setDate(compareDate.getDate()); 
+compareDate.setDate(compareDate.getDate());
 
 timer = setInterval(function() {
   timeBetweenDates(compareDate);

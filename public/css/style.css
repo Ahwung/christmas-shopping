@@ -247,29 +247,16 @@ span.tags {
     text-decoration: underline;
 }
 
-/* CSS for slideshow */
-h3{
-  text-align: center;
-}
-
-.slides {
-    position: relative;
-    width: 250px;
-    /* height: 50px; */
-    padding: 0px;
-    margin: 0 auto;
-    list-style-type: none;
-    display: block;
-}
 
 .row {
     display: flex;
     justify-content: space-between;
 }
 
-.carousel h3 {
+ h3 {
     color: #004d40;
     font-weight: 600;
+    text-align: center;
 }
 
 .countdown {
@@ -293,4 +280,26 @@ h3{
     text-shadow: 2px 2px 2px #b71c1c;
 
 
+}
+
+/* CSS for slideshow */
+
+.slides {
+    position: relative;
+    width: 250px;
+    /* height: 50px; */
+    padding: 0px;
+    margin: 0 auto;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.carousel{
+  width: 60%;
+  height: 250px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px;
+  margin-bottom: 70px;
 }

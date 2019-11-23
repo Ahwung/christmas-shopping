@@ -23,19 +23,21 @@
 
 		</div>
 
-		<div class="carousel">
-			<h3>Trending Holiday Gifts</h3>
-			<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img  ng-src="{{ctrl.slideImage}}" alt=""></a>
+		<h3>Trending Holiday Gifts</h3>
+				<div class="carousel">
 
-		</div>
+					<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage}}" alt=""></a>
+					<a href="{{ctrl.slideLink1}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage1}}" alt=""></a>
+					<a href="{{ctrl.slideLink2}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage2}}" alt=""></a>
+				</div>
 
+				<div class="container chart">
 
-		<div class="container chart">
-			<h2>holiShopper Budget Planner</h2>
-			<p>Organize your holiday shopping by clicking on the green buttons to filter your wishlist!</p>
-			<table class="highlight">
-				<thead>
-					<tr>
+					<h2>holiShopper Budget Planner</h2>
+					<p>Organize your holiday shopping by clicking on the green buttons to filter your wishlist!</p>
+					<table class="highlight">
+						<thead>
+							<tr>
 							<th ng-click="ctrl.allCategory()"><button type="button" class="waves-effect waves-light btn teal darken-4">clear filter</button></th>
 
 							<th ng-repeat="category in ctrl.uniqueRecipientCategory" ng-click="ctrl.filterCategory(category)"><button type="button" class="waves-effect waves-light btn teal darken-4">{{category}}</button></th>
