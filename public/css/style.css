@@ -180,13 +180,5 @@ h3{
     padding: 0px;
     margin: 0 auto;
     list-style-type: none;
-    display: inline-block;
-}
-
-.carousel{
-  width: 60%;
-  height: 250px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
+    display: block;
 }
