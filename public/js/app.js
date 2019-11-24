@@ -12,6 +12,49 @@ this.sectionShow = false;
 
 this.item = ''
 
+this.loggedInUser = false;
+
+this.signup = function() {
+    $http({
+        url: "/users",
+        method: "POST",
+        data: {
+            username: this.signupUsername,
+            password: this.signupPassword
+        }
+    }).then(response => {
+        this.loggedInUser = response.data;
+    });
+};
+
+this.login = function() {
+    $http({
+        url: "/session",
+        method: "POST",
+        data: {
+            username: this.loginUsername,
+            password: this.loginPassword
+        }
+    }).then(response => {
+        if (response.data.username) {
+            console.log('loggedInUser being set')
+            this.loggedInUser = response.data;
+        } else {
+            this.loginUsername = null;
+            this.loginPassword = null;
+        }
+    });
+};
+
+this.logout = function() {
+    $http({
+        url: "/session",
+        method: "DELETE"
+    }).then(() => {
+        this.loggedInUser = false;
+    });
+};
+
 this.funcSectionShow = ( item) => {
     this.sectionShow = !this.sectionShow;
 
@@ -288,3 +331,16 @@ function timeBetweenDates(toDate) {
     $("#seconds").text(seconds);
   }
 }
+
+// // Populate index page on load
+// this.getWishlist();
+//
+// $http({
+//     method: "GET",
+//     url: "/session"
+// }).then(response => {
+//     if (response.data.username) {
+//         this.loggedInUser = response.data;
+//     }
+// });
+// }
