@@ -1,7 +1,7 @@
 const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
-
+this.isRunning = false;
 
 ///////////////////
 // functions
@@ -60,6 +60,7 @@ this.changeInclude = (path) => {
 
 // Moves item from the Wishlist column to the Paid column and vice-verser
 this.toggleComplete = function(item){
+  this.isRunning = true;
   console.log(!item.complete);
   $http({
     method: "PUT",
@@ -86,8 +87,7 @@ this.createItem = function(){
       this.image===undefined|this.image===""|
       this.storeName===undefined|this.storeName===""|
       this.storeUrl===undefined|this.storeUrl===""|
-      this.priority===undefined|this.priority===""|
-      this.notes===undefined|this.notes==="") {
+      this.priority===undefined|this.priority==="") {
     console.log("invalid");
 
   } else {
@@ -107,6 +107,7 @@ this.createItem = function(){
       	complete: this.complete
       }
     }).then((response) => {
+      this.isRunning = true;
       console.log(response);
       this.getWishlist();
 
@@ -134,6 +135,7 @@ this.deleteItem = function(item){
     method: "DELETE",
     url: "/wishlist/"+item._id
   }).then((response) => {
+    this.isRunning = true;
     this.getWishlist();
   })
 }
@@ -174,6 +176,7 @@ this.editItem = function(item){
 
     }
   }).then((response) => {
+    this.isRunning = true;
     console.log(response);
 
     this.getWishlist();
@@ -256,8 +259,8 @@ this.getWishlist = function(){
                           this.slideLink1 = this.wishlist[k+1].storeUrl;
                           this.slideImage2 = this.wishlist[k+2].image;
                           this.slideLink2 = this.wishlist[k+2].storeUrl;
-                          console.log(this.slideLink);
-                          console.log(k);
+                          // console.log(this.slideLink);
+                          // console.log(k);
 
                           slideShow();
 
@@ -265,7 +268,10 @@ this.getWishlist = function(){
 
                         }
 
-    slideShow();
+    if (this.isRunning === false) {
+      slideShow();
+    }
+
 
 
   })
