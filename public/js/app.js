@@ -77,7 +77,6 @@ this.toggleComplete = function(item){
 // routes
 ///////////////////
 this.createItem = function(){
-
   $http({
     method: "POST",
     url: "/wishlist",
