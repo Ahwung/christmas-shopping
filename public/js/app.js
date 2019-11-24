@@ -96,6 +96,16 @@ this.createItem = function(){
   }).then((response) => {
     console.log(response);
     this.getWishlist();
+
+    this.name = "";
+    this.recipient = "";
+    this.recipientCategory = "";
+    this.price = "";
+    this.image = "";
+    this.storeName = "";
+    this.storeUrl = "";
+    this.priority = "";
+    this.notes = "";
   },(error) => {
     console.log(error);
   })
