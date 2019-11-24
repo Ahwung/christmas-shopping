@@ -78,37 +78,54 @@ this.toggleComplete = function(item){
 ///////////////////
 this.createItem = function(){
     this.displayCreateInfo = false;
-  $http({
-    method: "POST",
-    url: "/wishlist",
-    data: {
-      name: this.name,
-    	recipient: this.recipient,
-    	recipientCategory: this.recipientCategory,
-    	price: this.price,
-    	image: this.image,
-    	storeName: this.storeName,
-    	storeUrl: this.storeUrl,
-    	priority: this.priority,
-    	notes: this.notes,
-    	complete: this.complete
-    }
-  }).then((response) => {
-    console.log(response);
-    this.getWishlist();
 
-    this.name = "";
-    this.recipient = "";
-    this.recipientCategory = "";
-    this.price = "";
-    this.image = "";
-    this.storeName = "";
-    this.storeUrl = "";
-    this.priority = "";
-    this.notes = "";
-  },(error) => {
-    console.log(error);
-  })
+  if (this.name===undefined|this.name===""|
+      this.recipient===undefined|this.recipient===""|
+      this.recipientCategory===undefined|this.recipientCategory===""|
+      this.price===undefined|this.price===""|
+      this.image===undefined|this.image===""|
+      this.storeName===undefined|this.storeName===""|
+      this.storeUrl===undefined|this.storeUrl===""|
+      this.priority===undefined|this.priority===""|
+      this.notes===undefined|this.notes==="") {
+    console.log("invalid");
+
+  } else {
+    $http({
+      method: "POST",
+      url: "/wishlist",
+      data: {
+        name: this.name,
+      	recipient: this.recipient,
+      	recipientCategory: this.recipientCategory,
+      	price: this.price,
+      	image: this.image,
+      	storeName: this.storeName,
+      	storeUrl: this.storeUrl,
+      	priority: this.priority,
+      	notes: this.notes,
+      	complete: this.complete
+      }
+    }).then((response) => {
+      console.log(response);
+      this.getWishlist();
+
+      this.name = "";
+      this.recipient = "";
+      this.recipientCategory = "";
+      this.price = "";
+      this.image = "";
+      this.storeName = "";
+      this.storeUrl = "";
+      this.priority = "";
+      this.notes = "";
+    },(error) => {
+      console.log(error);
+    })
+  }
+
+
+
 }
 
 
@@ -229,7 +246,7 @@ this.getWishlist = function(){
                           k++;
 
 
-                        console.log(this.slideImage);
+                        // console.log(this.slideImage);
 
                         $timeout(() => {
 
