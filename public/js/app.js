@@ -138,6 +138,7 @@ this.createItem = function(){
       method: "POST",
       url: "/wishlist",
       data: {
+        username: this.loggedInUser.username,
         name: this.name,
       	recipient: this.recipient,
       	recipientCategory: this.recipientCategory,
@@ -207,7 +208,8 @@ this.editItem = function(item){
     method: "PUT",
     url: "/wishlist/"+item._id,
     data: {
-        name: this.updateName,
+          username: this.loggedInUser.username,
+          name: this.updateName,
           recipient: this.updateRecipient,
           recipientCategory: this.updateRecipientCategory,
           price: this.updatePrice,
