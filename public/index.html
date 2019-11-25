@@ -193,7 +193,7 @@
 
 							</div>
 							<div class="card-action">
-								<button ng-click="ctrl.toggleComplete(item)">MOVE</button>
+								<button ng-click="ctrl.toggleComplete(item)">RETURN</button>
 							  <button ng-click="ctrl.deleteItem(item)">DELETE</button>
 							  <button ng-click="ctrl.funcSectionShow( item);">UPDATE</button>
 							</div>
@@ -217,13 +217,14 @@
 					<div class="container">
 						<form  ng-submit="ctrl.createItem()">
 							<h4>Create Wishlist Item!</h4>
+							<h6>Please fill out all fields</h6>
 							Name <input ng-model="ctrl.name" type="text"><br>
 							Recipient <input ng-model="ctrl.recipient" type="text"><br>
 							Recipient category <input ng-model="ctrl.recipientCategory" type="text"><br>
 							Price <input ng-model="ctrl.price" type="text"><br>
-							Image <input ng-model="ctrl.image" type="text"><br>
+							Image URL <input ng-model="ctrl.image" type="text"><br>
 							Store <input ng-model="ctrl.storeName" type="text"><br>
-							Store link <input ng-model="ctrl.storeUrl" type="text"><br>
+							Online Store Page URL <input ng-model="ctrl.storeUrl" type="text"><br>
 							Priority
 									<p>
 										<label for="high">

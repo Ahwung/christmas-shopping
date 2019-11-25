@@ -63,6 +63,11 @@ button{
     text-align: center;
 }
 
+.modal h6 {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+}
+
 .edit {
   display: block;
 
