@@ -136,7 +136,7 @@
 						<div class="wishlist col s11 offset-s1">
 
 								<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
-						| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+						| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true | filter:{'username':ctrl.loggedInUser.username}:true
 						| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
 									  <div class="card-image waves-effect waves-block waves-light">
 										<img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
@@ -180,7 +180,7 @@
 					<div class="bought col s11 offset-s1">
 
 						<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
-						| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true
+						| filter:{'complete':true}:true | filter:{'recipientCategory':ctrl.searchBox}:true | filter:{'username':ctrl.loggedInUser.username}:true
 						| orderBy: order">
 							<div class="card-image waves-effect waves-block waves-light">
 							  <img class="activator" ng-src="{{item.image}}" ng-click="ctrl.openShowModal(item)">
