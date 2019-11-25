@@ -332,9 +332,7 @@ function timeBetweenDates(toDate) {
   }
 }
 
-// // Populate index page on load
-// this.getWishlist();
-//
+// 
 // $http({
 //     method: "GET",
 //     url: "/session"

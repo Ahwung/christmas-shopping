@@ -17,6 +17,7 @@ body {
 main {
     margin: 20px;
     flex: 1 0 auto;
+    margin-bottom: 40px;
 }
 
 *, .row{
@@ -65,6 +66,22 @@ button{
 .edit {
   display: block;
 
+}
+
+.maintitle h2 {
+   color: #004d40;
+   font-weight: 600;
+   text-align: center;
+   margin-bottom: 50px;
+   font-family: 'Pacifico', cursive;
+   font-size: 70px;
+}
+
+.maintitle h3 {
+   color: #004d40;
+   font-weight: 500;
+   text-align: center;
+   letter-spacing: 1.5px;
 }
 
 img {
@@ -192,7 +209,7 @@ footer a{
     line-height: 2;
     bottom: 200px;
     margin-left: 0px;
-    width: 25%;
+    width: 35%;
     overflow: scroll;
 
 }
@@ -253,11 +270,7 @@ span.tags {
     justify-content: space-between;
 }
 
- h3 {
-    color: #004d40;
-    font-weight: 600;
-    text-align: center;
-}
+
 
 .countdown {
     border-bottom: 3px dotted #b71c1c;
@@ -301,5 +314,22 @@ span.tags {
   display: flex;
   justify-content: space-around;
   margin-top: 70px;
-  margin-bottom: 70px;
+  margin-bottom: 65px;
+}
+
+.logo {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    /* color: #b71c1c; */
+}
+
+legend {
+    padding: 0px 10px;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    /* color: #b71c1c; */
+}
+
+fieldset {
+    background-color: white;
 }
