@@ -325,14 +325,23 @@ span.tags {
 .logo {
     text-align: center;
     font-family: 'Pacifico', cursive;
-    /* color: #b71c1c; */
+    text-shadow: 1px 1px 1px #b71c1c;
+    color: #b71c1c;
+
 }
 
+.logo h1 {
+    font-size: 80px;
+}
+
+.logo p {
+    text-shadow: none;
+}
 legend {
     padding: 0px 10px;
     font-family: 'Pacifico', cursive;
     font-size: 28px;
-    /* color: #b71c1c; */
+    color: #b71c1c;
 }
 
 fieldset {
