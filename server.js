@@ -13,10 +13,8 @@ require("dotenv").config();
 
 
 const wishlistController = require("./controllers/wishlist.js");
-
-// REPLACE THIS WITH NEW CONTROLLERS
-// const usersController = require('./controllers/users.js')
-// const sessionsController = require('./controllers/sessions.js')
+const usersController = require('./controllers/users.js')
+const sessionController = require('./controllers/session.js')
 
 // ========================
 // Port
@@ -60,10 +58,10 @@ app.use(
 );
 
 app.use("/wishlist", wishlistController);
+app.use('/users', usersController)
+app.use('/session', sessionController)
 
-// REPLACE THIS LATER
-// app.use('/users', usersController)
-// app.use('/sessions', sessionsController)
+
 
 // ========================
 // Listener
