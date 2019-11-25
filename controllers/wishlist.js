@@ -19,6 +19,7 @@ router.get("/seed", (req, res) => {
 // index
 ///////////////////
 router.get('/', (req, res) => {
+    console.log(req.session.user)
     Wishlist.find({}, (err, foundWishlist) => {
         res.json(foundWishlist);
     }).sort({price:1})

@@ -18,12 +18,44 @@
 		<link rel="stylesheet" href="/css/style.css" />
 	</head>
 	<body ng-controller="MyController as ctrl">
+		<!-- Log In and Sign up -->
+		<section ng-if="ctrl.loggedInUser === false">
+			<div class="container">
+				<main>
+					<div class="logo">
+						<h1>holiShopper</h1>
+					</div>
+					<fieldset>
+						<legend>Sign Up</legend>
+						<form ng-submit="ctrl.signup()">
+							USERNAME <input type="text" ng-model="ctrl.signupUsername">
+							PASSWORD <input type="password" ng-model="ctrl.signupPassword">
+							<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Sign Up">
+						</form>
+					</fieldset>
+					<fieldset>
+						<legend>Log In</legend>
+						<form ng-submit="ctrl.login()">
+							USERNAME <input type="text" ng-model="ctrl.loginUsername">
+							PASSWORD <input type="password" ng-model="ctrl.loginPassword">
+							<input type="submit" class="waves-effect waves-light btn teal darken-4" value="Log In">
+						</form>
+					</fieldset>
+				</main>
+
+			</div>
+		</section>
+
+		<section ng-if="ctrl.loggedInUser !== false">
 
 		<div class="navbar-fixed" ng-include="'partials/nav.html'">
 
 		</div>
+		<div class="maintitle">
+			<h2>Welcome {{ctrl.loggedInUser.username}}</h2>
+			<h3>Trending Holiday Gifts</h3>
+		</div>
 
-		<h3>Trending Holiday Gifts</h3>
 				<div class="carousel">
 
 					<a href="{{ctrl.slideLink}}" target="_blank" class="slides" ><img ng-src="{{ctrl.slideImage}}" alt=""></a>
@@ -62,7 +94,7 @@
 
 
 
-		<div class="main">
+			<div class="main">
 
 
 
@@ -168,8 +200,8 @@
 							  <span class="card-title grey-text text-darken-4">{{item.name|limitTo: 11}} for {{item.recipient}}<i class="material-icons right">close</i></span>
 							  <h5>Price</h5>
 							  <p>{{item.price |currency}}</p>
-							  <h5>Store</h5>
-							  <a href="{{item.storeUrl}}">{{item.storeName}}</a>
+							  <h5>Priority</h5>
+							  <p>{{item.priority}}</p>
 							  <h5>Notes</h5>
 							  <p>{{item.notes}}</p>
 							</div>
@@ -194,8 +226,8 @@
 							Priority
 									<p>
 										<label for="high">
-											<input id="high" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="high" >
-											<span>High</span>
+											<input id="high" class="with-gap" ng-model="ctrl.priority" type="radio" name="priority" value="top" >
+											<span>Top</span>
 										</label>
 									</p>
 									<p>
@@ -235,8 +267,8 @@
 
 									Priority<br/>
 									<label for="high">
-											<input type="radio" id="high" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="high" if(ctrl.item.priority === 'high'){ checked }  />
-											<span>High</span>
+											<input type="radio" id="high" ng-model="ctrl.updatePriority" class="with-gap"  name="priority" value="top" if(ctrl.item.priority === 'high'){ checked }  />
+											<span>Top</span>
 										</label><br/>
 
 										<label for="medium">
@@ -256,7 +288,7 @@
 					</div>
 
 			  </section>
-
+		 </section>
 
 
 

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const wishlistSchema = new mongoose.Schema({
+  username: { type: String, required: true },
   name: { type: String, required: true },
   recipient: { type: String, required: true },
   recipientCategory: { type: String, required: true },
