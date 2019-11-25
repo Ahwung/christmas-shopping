@@ -323,8 +323,14 @@ this.getWishlist = function(){
 // Populate index page on load
 this.getWishlist();
 
-
-
+$http({
+    method: "GET",
+    url: "/session"
+}).then(response => {
+    if (response.data.username) {
+        this.loggedInUser = response.data;
+    }
+});
 
 }]) //closes controller
 
@@ -365,13 +371,4 @@ function timeBetweenDates(toDate) {
   }
 }
 
-// 
-// $http({
-//     method: "GET",
-//     url: "/session"
-// }).then(response => {
-//     if (response.data.username) {
-//         this.loggedInUser = response.data;
-//     }
-// });
-// }
+
