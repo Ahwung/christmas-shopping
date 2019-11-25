@@ -1,7 +1,19 @@
 const app = angular.module("MyApp", []);
 
 app.controller("MyController", ["$http", "$timeout", function($http, $timeout){
+// This variable ensures the slideshow function is only called on load
 this.isRunning = false;
+
+// get session on the very top of the code to ensure userWishlist can be populated
+$http({
+    method: "GET",
+    url: "/session"
+}).then(response => {
+    if (response.data.username) {
+        this.loggedInUser = response.data;
+
+    }
+});
 
 ///////////////////
 // functions
@@ -14,6 +26,7 @@ this.item = ''
 
 this.loggedInUser = false;
 
+
 this.signup = function() {
     $http({
         url: "/users",
@@ -24,6 +37,8 @@ this.signup = function() {
         }
     }).then(response => {
         this.loggedInUser = response.data;
+        this.isRunning = true;
+        this.getWishlist();
     });
 };
 
@@ -39,6 +54,9 @@ this.login = function() {
         if (response.data.username) {
             console.log('loggedInUser being set')
             this.loggedInUser = response.data;
+            this.isRunning = true;
+            this.getWishlist();
+
         } else {
             this.loginUsername = null;
             this.loginPassword = null;
@@ -80,10 +98,36 @@ this.allCategory = function(){
 this.searchBox = undefined;
 }
 
-// Calculate Budget and Paid for each recipient category
+// Calculate Budget and Paid for each recipient category of specific user
+this.budgetTable = function(){
+  this.budgetArray = [0];
+  this.paidArray = [0];
+  this.recipientCategoryArray = [];
+  for (var i = 0; i < this.userWishlist.length; i++) {
+    if (this.userWishlist[i].complete) {
+      this.paidArray.push(this.userWishlist[i].price);
+    } else {
+      this.budgetArray.push(this.userWishlist[i].price);
+    }
+
+    this.recipientCategoryArray.push(this.userWishlist[i].recipientCategory);
+  }
+
+  console.log(this.budgetArray);
+  this.paid = this.paidArray.reduce((a, b) => a + b);
+  this.budget = this.budgetArray.reduce((a, b) => a + b);
+
+  // Create unique recipient category for table
+  this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
+  console.log(this.uniqueRecipientCategory);
+
+
+}
+
+
 this.sumMoney = function(category, complete){
 
-this.filteredWishlist = this.wishlist.filter((item) => {
+this.filteredWishlist = this.userWishlist.filter((item) => {
 return item.recipientCategory.toLowerCase()===category;
 })
 
@@ -254,27 +298,15 @@ this.getWishlist = function(){
     this.wishlist = response.data;
     console.log(this.wishlist);
 
-    // Calculate total Budget and Paid
-    this.budgetArray = [0];
-    this.paidArray = [0];
-    this.recipientCategoryArray = [];
-    for (var i = 0; i < this.wishlist.length; i++) {
-      if (this.wishlist[i].complete) {
-        this.paidArray.push(this.wishlist[i].price);
-      } else {
-        this.budgetArray.push(this.wishlist[i].price);
-      }
+    // Calculate total Budget and Paid for username
+    if (this.loggedInUser) {
+      this.userWishlist = this.wishlist.filter((item) => {
+        return item.username == this.loggedInUser.username;
+      })
 
-      this.recipientCategoryArray.push(this.wishlist[i].recipientCategory);
+      this.budgetTable();
     }
 
-    console.log(this.budgetArray);
-    this.paid = this.paidArray.reduce((a, b) => a + b);
-    this.budget = this.budgetArray.reduce((a, b) => a + b);
-
-    // Create unique recipient category for table
-    this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
-    console.log(this.uniqueRecipientCategory);
 
     // functions for slideshowlet k = 0;
                         let k = 0;
@@ -325,14 +357,6 @@ this.getWishlist = function(){
 // Populate index page on load
 this.getWishlist();
 
-$http({
-    method: "GET",
-    url: "/session"
-}).then(response => {
-    if (response.data.username) {
-        this.loggedInUser = response.data;
-    }
-});
 
 }]) //closes controller
 
@@ -372,5 +396,3 @@ function timeBetweenDates(toDate) {
     $("#seconds").text(seconds);
   }
 }
-
-
