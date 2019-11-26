@@ -20,12 +20,12 @@
 	<body ng-controller="MyController as ctrl">
 		<!-- Log In and Sign up -->
 		<section ng-if="ctrl.loggedInUser === false">
+			<div class="logo">
+				<h1>holiShopper</h1>
+				<p>Upgrade Your Holiday Shopping List</p>
+			</div>
 			<div class="container">
 				<main>
-					<div class="logo">
-						<h1>holiShopper</h1>
-						<p>Upgrade Your Holiday Shopping List</p>
-					</div>
 					<fieldset>
 						<legend>Sign Up</legend>
 						<form ng-submit="ctrl.signup()">
