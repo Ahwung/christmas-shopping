@@ -132,6 +132,6 @@ $timeout(() => {
 ```
 
 ## Work Flow
-- Tuesday
+### Tuesday
 1. Slack to agree on the Christmas Shopping App
 2. Brainstorm to come up with features and extras (after we meet MVP)
