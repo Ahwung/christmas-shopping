@@ -52,8 +52,6 @@ Created shopping application in order to allow users to create a shopping list f
 - Express-session
 - Mongoose
 
-## Work Flow
-
 ## Approach Taken
 Here are the steps taken to populate the index Page
 
@@ -105,9 +103,10 @@ this.total += this.filteredWishlist[i].price}
 ```
 
 ### Slideshow
+- this.wishlist from all users
 - Recursion because setTimeout was non-blocking
-- Use Angular $timeout in order to initiate Angular digest cycle
-- Use this.isRunning = false is ensure slideShow() is only called on load since it's part of the getWishlist()
+- Use Angular $timeout instead of setTimeout in order to initiate Angular digest cycle
+- Use this.isRunning = false to ensure slideShow() is only called on load since it's part of the getWishlist()
 ```js
 slideShow = () => {
 
@@ -131,3 +130,8 @@ $timeout(() => {
 
 }
 ```
+
+## Work Flow
+- Tuesday
+1. Slack to agree on the Christmas Shopping App
+2. Brainstorm to come up with features and extras (after we meet MVP)
