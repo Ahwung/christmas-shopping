@@ -57,4 +57,77 @@ Created shopping application in order to allow users to create a shopping list f
 ## Approach Taken
 Here are the steps taken to populate the index Page
 
-## Limitations of the App
+### Wishlist/Purchased: Find wishlist based on username and complete.  User can enforce additional sort and filter
+Pulls in entire wishlist from the database and display the appropriate ones on index
+```html
+<div class="card sticky-action" ng-repeat="item in ctrl.wishlist
+| filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true | filter:{'username':ctrl.loggedInUser.username}:true
+| orderBy: order" ng-class="(item.priority === 'high') ? 'high' : ''">
+```
+
+### Budget table
+Filter out the wishlist into a userWishlist for calculations
+```js
+if (this.loggedInUser) {
+  this.userWishlist = this.wishlist.filter((item) => {
+    return item.username == this.loggedInUser.username;
+  })
+```
+
+Populate table with ng-repeat
+```html
+<tr>
+  <td>Budget</td>
+  <td ng-repeat="category in ctrl.uniqueRecipientCategory">{{ctrl.sumMoney(category, false)}} ({{ctrl.sumMoney(category, false)/ctrl.budget*100|number: 0}}%)</td>
+  <td>{{ctrl.budget|currency}}</td>
+</tr>
+```
+
+this.budgetTable() to calculate uniqueRecipientCategory and the total amount
+```js
+this.paid = this.paidArray.reduce((a, b) => a + b);
+this.budget = this.budgetArray.reduce((a, b) => a + b);
+
+// Create unique recipient category for table
+this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
+```
+
+this.sumMoney(category, complete) to calculate the total for each unique category
+```js
+this.filteredWishlist = this.userWishlist.filter((item) => {
+return item.recipientCategory.toLowerCase()===category;
+})
+
+for (var i = 0; i < this.filteredWishlist.length; i++) {
+if (this.filteredWishlist[i].complete === complete) {
+this.total += this.filteredWishlist[i].price}
+}
+```
+
+### Slideshow
+- Recursion because setTimeout was non-blocking
+- Use Angular $timeout in order to initiate Angular digest cycle
+- Use this.isRunning = false is ensure slideShow() is only called on load since it's part of the getWishlist()
+```js
+slideShow = () => {
+
+  if (k >= this.wishlist.length-3) {
+    k= -1;
+  }
+  k++;
+
+$timeout(() => {
+
+  this.slideImage = this.wishlist[k].image;
+  this.slideLink = this.wishlist[k].storeUrl;
+  this.slideImage1 = this.wishlist[k+1].image;
+  this.slideLink1 = this.wishlist[k+1].storeUrl;
+  this.slideImage2 = this.wishlist[k+2].image;
+  this.slideLink2 = this.wishlist[k+2].storeUrl;
+
+  slideShow();
+
+}, 3000)
+
+}
+```
