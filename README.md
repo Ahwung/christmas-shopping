@@ -153,4 +153,4 @@ $timeout(() => {
 5. Filter by recipientCategory and user sort functions
 6. Major CSS day
 
-![index before CSS](public/img/index.jpg)
+![index before CSS](public/img/index.png)
