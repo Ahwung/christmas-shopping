@@ -140,7 +140,7 @@ $timeout(() => {
 ### Wednesday
 1. Updated schematic after class and reading project markdown
 2. Zoom to set up git repo, Atlas and deploy to heroku
-3. Divide and conquer.  Agreed on meeting MVP by the end of Friday
+3. Divide and conquer.  Agreed on meeting MVP by the end of Saturday
 4. Set up file structure, server.js, controller and models Schema
 5. Test via POSTMAN.  Data was not posting because of the missing app.use(express.json());
 6. Set up basic html per wireFraming.  Create New Item added.  app.js in progress
@@ -148,9 +148,32 @@ $timeout(() => {
 ### Thursday
 1. Nav in partials. Moved Create New Item into modal.  Edit modal in progress
 2. Set up Budget table
-3. Tried to AJAX another API for rnadom cheesy X'mas songs on load
+3. Tried to AJAX another API for random cheesy X'mas songs on load
 4. Looked into SOUNDCLOUD AND last.fm.  Bad UX and UI for songs on load => Went back to login in order to meet MVP
 5. Filter by recipientCategory and user sort functions
 6. Major CSS day
 
 ![index before CSS](public/img/index.png)
+
+### Friday
+1. Fix edit modal.  Took it out of the ng-repeat loop to avoid z-index issues.  Dryer codes without the use of $index
+2. Clear edit form.
+3. Push to Heroku
+4. Carousel slideshow
+5. More CSS
+6. Started Login and sign up (only one person on the database)
+
+### Saturday
+1. Got the radio buttons to work on Edit and Create form
+2. Merged branches to include carousel and countdown
+3. Clear Create New Item form
+4. ng-class the priority and closed Crete New Item form on submit
+5. Fixed a bug on the recursion by introducing the isRunning variable
+6. Updated Schema to required: true to prevent invalid entries in database
+4. Merge with login and the code broke
+
+### Monday
+1. Pushed the primitive version with the login feature to Master as a backup plan
+2. Everyone worked off the final branch with all the features and try to make the login work
+3. Update the Budget table to show data for specific user only
+4. Merged final with Master and pushed to Heroku
