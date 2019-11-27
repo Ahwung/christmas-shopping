@@ -135,3 +135,22 @@ $timeout(() => {
 ### Tuesday
 1. Slack to agree on the Christmas Shopping App
 2. Brainstorm to come up with features and extras (after we meet MVP)
+3. Started trello for key items and dates
+
+### Wednesday
+1. Updated schematic after class and reading project markdown
+2. Zoom to set up git repo, Atlas and deploy to heroku
+3. Divide and conquer.  Agreed on meeting MVP by the end of Friday
+4. Set up file structure, server.js, controller and models Schema
+5. Test via POSTMAN.  Data was not posting because of the missing app.use(express.json());
+6. Set up basic html per wireFraming.  Create New Item added.  app.js in progress
+
+### Thursday
+1. Nav in partials. Moved Create New Item into modal.  Edit modal in progress
+2. Set up Budget table
+3. Tried to AJAX another API for rnadom cheesy X'mas songs on load
+4. Looked into SOUNDCLOUD AND last.fm.  Bad UX and UI for songs on load => Went back to login in order to meet MVP
+5. Filter by recipientCategory and user sort functions
+6. Major CSS day
+
+![index before CSS](public/img/index.jpg)
