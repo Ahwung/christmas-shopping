@@ -58,7 +58,7 @@ Created shopping application in order to allow users to create a shopping list f
 Here are the steps taken to populate the index Page
 
 ### Wishlist/Purchased: Find wishlist based on username and complete.  User can enforce additional sort and filter
-Pulls in entire wishlist from the database and display the appropriate ones on index
+- Pulls in entire wishlist from the database and display the appropriate ones on index
 ```html
 <div class="card sticky-action" ng-repeat="item in ctrl.wishlist
 | filter:{'complete':false}:true | filter:{'recipientCategory':ctrl.searchBox}:true | filter:{'username':ctrl.loggedInUser.username}:true
@@ -66,7 +66,7 @@ Pulls in entire wishlist from the database and display the appropriate ones on i
 ```
 
 ### Budget table
-Filter out the wishlist into a userWishlist for calculations
+- Filter out the wishlist into a userWishlist for calculations
 ```js
 if (this.loggedInUser) {
   this.userWishlist = this.wishlist.filter((item) => {
@@ -74,7 +74,7 @@ if (this.loggedInUser) {
   })
 ```
 
-Populate table with ng-repeat
+- Populate table with ng-repeat
 ```html
 <tr>
   <td>Budget</td>
@@ -83,7 +83,7 @@ Populate table with ng-repeat
 </tr>
 ```
 
-this.budgetTable() to calculate uniqueRecipientCategory and the total amount
+- this.budgetTable() to calculate uniqueRecipientCategory and the total amount
 ```js
 this.paid = this.paidArray.reduce((a, b) => a + b);
 this.budget = this.budgetArray.reduce((a, b) => a + b);
@@ -92,7 +92,7 @@ this.budget = this.budgetArray.reduce((a, b) => a + b);
 this.uniqueRecipientCategory = [...new Set(this.recipientCategoryArray)].sort();
 ```
 
-this.sumMoney(category, complete) to calculate the total for each unique category
+- this.sumMoney(category, complete) to calculate the total for each unique category
 ```js
 this.filteredWishlist = this.userWishlist.filter((item) => {
 return item.recipientCategory.toLowerCase()===category;
